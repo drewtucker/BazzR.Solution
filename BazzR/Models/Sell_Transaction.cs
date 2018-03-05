@@ -1,10 +1,9 @@
 using System;
-﻿using System;
 using System.Collections.Generic;
 using BazzrApp;
 using MySql.Data.MySqlClient;
 
-namespace BazzrApp.Models
+namespace Bazzr.Models
 {
   public class Sell_Transaction
   {
