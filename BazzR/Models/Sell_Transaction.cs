@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using BazzrApp;
+using Bazzr;
 using MySql.Data.MySqlClient;
 
 namespace Bazzr.Models
