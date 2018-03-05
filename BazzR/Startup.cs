@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-//using Bazzr.Models;
+using MySql.Data.MySqlClient;
+using Microsoft.EntityFrameworkCore;
+using Bazzr.Models;
 
 namespace Bazzr
 {
@@ -35,6 +37,10 @@ namespace Bazzr
         {
             // Add framework services.
             services.AddMvc();
+			services.AddEntityFrameworkMySql()
+			.AddDbContext<User>(options =>
+									  options
+										   .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
