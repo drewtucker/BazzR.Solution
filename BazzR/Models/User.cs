@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using BazzrApp;
+using Bazzr;
 using MySql.Data.MySqlClient;
 
-namespace BazzrApp.Models
+namespace Bazzr.Models
 {
   public class User
   {
@@ -35,7 +35,7 @@ namespace BazzrApp.Models
         return this.GetId().Equals(newUser.GetId());
       }
     }
-
+  
     public override int GetHashCode()
     {
       return this.GetId().GetHashCode();
@@ -43,7 +43,7 @@ namespace BazzrApp.Models
 
     public string GetName()
     {
-      return _name;
+      return _username;
     }
 
     public int GetId()
