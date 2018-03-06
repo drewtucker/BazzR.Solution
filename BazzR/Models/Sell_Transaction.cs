@@ -1,9 +1,16 @@
 using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using BazzrApp;
 using MySql.Data.MySqlClient;
 
 namespace BazzrApp.Models
+=======
+using Bazzr;
+using MySql.Data.MySqlClient;
+
+namespace Bazzr.Models
+>>>>>>> c6ba035983ffa826d215aa893dc7a5e4ac8ea062
 {
   public class Sell_Transaction
   {

@@ -1,9 +1,9 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
-using BazzrApp;
+using Bazzr;
 
-namespace BazzrApp.Models
+namespace Bazzr.Models
 {
     public class DB
     {

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using BazzrApp;
+using Bazzr;
 using MySql.Data.MySqlClient;
 
-namespace BazzrApp.Models
+namespace Bazzr.Models
 {
   public class Tag
   {
@@ -12,7 +12,7 @@ namespace BazzrApp.Models
 
     public Tag(string name, int id = 0)
     {
-      _int = int;
+      _id = id;
       _name = name;
     }
 
