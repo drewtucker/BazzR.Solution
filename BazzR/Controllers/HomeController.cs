@@ -1,27 +1,11 @@
-<<<<<<< HEAD
-using System.Collections.Generic;
-using System;
-using Microsoft.AspNetCore.Mvc;
-// using BazzrApp.Models;
 
-namespace BazzrApp.Controllers
-{
-  public class HomeController : Controller
-  {
-    [HttpGet]
-    public ActionResult Index()
-    {
-      return View();
-    }
-  }
-=======
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BazzR.Controllers
+namespace Bazzr.Controllers
 {
 	public class HomeController : Controller
 	{
@@ -52,6 +36,4 @@ namespace BazzR.Controllers
 		{
 			return View();
 		}
-	}
->>>>>>> c6ba035983ffa826d215aa893dc7a5e4ac8ea062
 }
