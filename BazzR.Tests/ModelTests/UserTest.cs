@@ -34,6 +34,14 @@ namespace Bazzr.Tests
             CollectionAssert.AreEqual(testList, result);
         }
 
-
+        [TestMethod]
+        public void Find_FindsUserInDatabase_User()
+        {
+            DateTime dt = new DateTime(2008, 3, 9, 16, 5, 7);
+            User testUser = new User("KSmith", "k@a.com", "Kevin", "Smith", "password", dt, 0, 1);
+            testUser.Save();
+            User result = User.Find(testUser.GetId());
+            Assert.AreEqual(testUser, result);
+        }
     }
 }
