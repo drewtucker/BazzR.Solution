@@ -194,6 +194,13 @@ ALTER TABLE `users`
 --
 
 --
+-- Constraints for table `buy_offer`
+--
+ALTER TABLE `buy_offer`
+  ADD CONSTRAINT `buy_offer_ibfk_1` FOREIGN KEY (`offerer_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `buy_offer_ibfk_2` FOREIGN KEY (`game_id`) REFERENCES `game` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `games_tags`
 --
 ALTER TABLE `games_tags`

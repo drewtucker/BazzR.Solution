@@ -1,3 +1,4 @@
+
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using Bazzr;
 namespace Bazzr.Tests
 {
     [TestClass]
-    public class Buy_OfferTests : IDisposable
+   public class Buy_OfferTests : IDisposable
     {
         public Buy_OfferTests()
         {
@@ -45,3 +46,4 @@ namespace Bazzr.Tests
         }
     }
 }
+

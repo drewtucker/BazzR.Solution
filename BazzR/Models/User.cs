@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Bazzr;
-using MySql.Data.MySqlClient;
 
 namespace Bazzr.Models
 {
@@ -27,7 +28,7 @@ namespace Bazzr.Models
           _hashed_password = hashed_password;
           _reputation = rep;
           _dateRegistered = datereg;
-        }
+       }
 
         public override bool Equals(System.Object otherUser)
         {
@@ -40,16 +41,25 @@ namespace Bazzr.Models
             User newUser = (User) otherUser;
             return this.GetId().Equals(newUser.GetId());
           }
-        }
+            if (!(otherUser is User))
+            {
+                return false;
+            }
+            else
+            {
+                User newUser = (User)otherUser;
+                return this.GetId().Equals(newUser.GetId());
+            }
+       }
 
         public override int GetHashCode()
         {
-          return this.GetId().GetHashCode();
+            return this.GetId().GetHashCode();
         }
 
         public string GetName()
         {
-          return _userName;
+            return _username;
         }
 
         public int GetId()
