@@ -10,7 +10,7 @@ namespace Bazzr.Models
     public class User
     {
         [Key]
-        private int id;
+        private int _id;
         private string _username;
         private string _email;
         private string _firstName;

@@ -37,10 +37,10 @@ namespace Bazzr
         {
             // Add framework services.
             services.AddMvc();
-			services.AddEntityFrameworkMySql()
-			.AddDbContext<User>(options =>
-									  options
-										   .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
+			services.AddEntityFrameworkMySql();
+			// .AddDbContext<User>(options =>
+			// 						  options
+			// 							   .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
