@@ -1,7 +1,7 @@
 ﻿
-*{
+/**{
   border: 1px solid red;
-}
+}*/
 
 #logIn_button {
   float: right;
@@ -53,13 +53,14 @@
 }
 
 .footer {
-  background-color: lightgray;
+  background-color: #f8f8f8;
   position:fixed;
   bottom:0;
   left:0;
   right:0;
-  height:100px;
+  height:10vw;
   text-align: center;
+  box-shadow: 1.5px 1.5px 5px;
 }
 
 /*.footer h5{
@@ -74,6 +75,10 @@
   display: inline-block;
 }*/
 
+#copyright {
+  /*float: left;*/
+}
+
 .footer *{
-  display: inline-block;
+  /*display: inline-block;*/
 }
