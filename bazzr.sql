@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
+<<<<<<< HEAD
+-- Generation Time: Mar 05, 2018 at 09:35 PM
+=======
 -- Generation Time: Mar 06, 2018 at 01:32 AM
+>>>>>>> c6ba035983ffa826d215aa893dc7a5e4ac8ea062
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -32,8 +36,13 @@ CREATE TABLE `buy_offer` (
   `id` int(11) NOT NULL,
   `offerer_id` int(11) NOT NULL,
   `game_id` int(11) NOT NULL,
+<<<<<<< HEAD
+  `transaction_sell_id` int(11) NOT NULL,
+  `date` date NOT NULL
+=======
   `sell_transaction_id` int(11) NOT NULL,
   `date` datetime NOT NULL
+>>>>>>> c6ba035983ffa826d215aa893dc7a5e4ac8ea062
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -105,7 +114,11 @@ CREATE TABLE `users` (
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) CHARACTER SET utf8 COLLATE utf8_estonian_ci NOT NULL,
   `rep` int(11) NOT NULL,
+<<<<<<< HEAD
+  `date_registered` date NOT NULL
+=======
   `date_registered` datetime NOT NULL
+>>>>>>> c6ba035983ffa826d215aa893dc7a5e4ac8ea062
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
