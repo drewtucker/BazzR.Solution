@@ -1,7 +1,4 @@
-<<<<<<< Updated upstream
-obj/
-bin/
-=======
-/obj
-/bin
->>>>>>> Stashed changes
+BazzR/obj
+BazzR/bin
+BazzR.Tests/obj
+BazzR.Tests/bin
