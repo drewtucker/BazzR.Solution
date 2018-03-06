@@ -12,8 +12,8 @@ namespace BazzR.Controllers
 		public ActionResult Create()
 		{
 		    //read parameters from form
-		    User newUser = new User(//parameters);
-		    newUser.Save();
+		    //User newUser = new User(//parameters);
+		    //newUser.Save();
 		    RedirectToAction("Index", "Home");
 		}
 	}
