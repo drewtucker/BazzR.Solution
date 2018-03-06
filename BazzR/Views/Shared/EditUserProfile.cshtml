@@ -1,0 +1,32 @@
+@{
+  Layout = "_Layout";
+}
+<div class="col-sm-3">
+</div>
+
+<div id="edit-user-profile" class="col-sm-6">
+
+<h4 class="headerHighlight">Edit Your Account:</h4>
+<hr>
+<form action="/user/create/{id}" method="post">
+  <label for="new-first-name">First Name:</label>
+  <input type="text" name="new-first-name">
+  <br>
+  <label for="new-last-name">Last Name:</label>
+  <input type="text" name="new-last-name">
+  <br>
+  <label for="new-email">Email:</label>
+  <input type="text" name="new-email">
+  <br>
+  <label for="new-username">Username:</label>
+  <input type="text" name="new-username">
+  <br>
+  <label for="new-password">Password:</label>
+  <input type="password" name="new-password">
+  <hr style="border-bottom: 1px solid yellowgreen;">
+  <button type="submit" class="btn btn-info" name="button">Create</button>
+</form>
+</div>
+
+<div class="col-sm-3">
+</div>
