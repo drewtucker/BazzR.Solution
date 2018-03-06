@@ -36,4 +36,5 @@ namespace Bazzr.Controllers
 		{
 			return View();
 		}
+	}
 }
