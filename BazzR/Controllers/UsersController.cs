@@ -9,13 +9,12 @@ namespace BazzR.Controllers
 	public class UsersController : Controller
 	{
 		[HttpPost("/user/create/{id}")]
-        public ActionResult Create()
-        {
-            //read parameters from form
-            User newUser = new User(//parameters);
-            newUser.Save();
-            RedirectToAction("Index", "Home");
-        }
-
+		public ActionResult Create()
+		{
+		    //read parameters from form
+		    User newUser = new User(//parameters);
+		    newUser.Save();
+		    RedirectToAction("Index", "Home");
+		}
 	}
 }
