@@ -1,37 +1,79 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿
+*{
+  border: 1px solid red;
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+#logIn_button {
+  float: right;
+  margin-left: 5vw
 }
 
-/* Set widths on the form inputs since otherwise they're 100% wide */
-input,
-select,
-textarea {
-    max-width: 280px;
+#LogIn_dropdown {
+  padding: 15px;
+  position: absolute;
 }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
+#navBrand {
+  color: yellowgreen;
 }
 
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%;
+#info_header {
+  text-align: center;
+  display: inline-block;
+  float: none;
 }
 
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
-    }
+#left-column {
+  background-color: #f8f8f8;
+  height: 100%;
+  text-align: center;
+  margin-left: 1%;
+  border-radius: 10px;
+  box-shadow: 1.5px 1.5px 5px;
+
+}
+
+#body-column {
+  background-color: #f8f8f8;
+  margin-left: 1vw;
+  text-align: center;
+  margin-left: 3%;
+  border-radius: 10px;
+  padding-bottom: 19vw;
+  box-shadow: 1.5px 1.5px 5px;
+}
+#navBar-container {
+  text-align: center;
+  text-shadow: 0.25px 0.25px;
+}
+
+.headerHighlight {
+  background-color: yellowgreen;
+  border-radius: 10px;
+}
+
+.footer {
+  background-color: lightgray;
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:100px;
+  text-align: center;
+}
+
+/*.footer h5{
+  display: inline-block;
+}
+
+.footer p{
+  display: inline-block;
+}
+
+.footer li{
+  display: inline-block;
+}*/
+
+.footer *{
+  display: inline-block;
 }
