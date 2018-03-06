@@ -48,7 +48,35 @@ namespace Bazzr.Models
 
     public void Save()
     {
-      //save game to database
+       MySqlConnection conn = DB.Connection();
+       conn.Open();
+
+       var cmd = conn.CreateCommand() as MySqlCommand;
+       cmd.CommandText = @"INSERT INTO games (title, platform, description, photopath, metascore) VALUES (@title, @platform, @description, @photopath, @metascore);";
+
+       MySqlParameter name = new MySqlParameter("@title, _title);
+       cmd.Parameters.Add(title);
+                                                
+       MySqlParameter platform = new MySqlParameter("@platform, _platform);
+       cmd.Parameters.Add(platform);
+       
+       MySqlParameter description = new MySqlParameter("@description, _description);
+       cmd.Parameters.Add(description);
+       
+       MySqlParameter photopath = new MySqlParameter("@photopath, _photopath);
+       cmd.Parameters.Add(photopath);
+                          
+       MySqlParameter metascore = new MySqlParameter("@metascore, _metascore);
+       cmd.Parameters.Add(metascore);
+                                                
+       cmd.ExecuteNonQuery();
+       _id = (int) cmd.LastInsertedId;
+       conn.Close();
+
+       if (conn != null)
+       {
+           conn.Dispose();
+       }
     }
 
     public static List<Game> GetAll()

@@ -8,11 +8,13 @@ namespace Bazzr.Controllers
 {
 	public class HomeController : Controller
 	{
+		[HttpGet("/")]
 		public IActionResult Index()
 		{
 			return View();
 		}
 
+		[HttpGet("/about")]
 		public IActionResult About()
 		{
 			ViewData["Message"] = "Your application description page.";
@@ -20,6 +22,7 @@ namespace Bazzr.Controllers
 			return View();
 		}
 
+		[HttpGet("/contact")]
 		public IActionResult Contact()
 		{
 			ViewData["Message"] = "Your contact page.";
@@ -27,6 +30,7 @@ namespace Bazzr.Controllers
 			return View();
 		}
 
+		[HttpGet("/error")]
 		public IActionResult Error()
 		{
 			return View();
