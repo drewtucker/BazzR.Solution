@@ -23,7 +23,7 @@
   float: none;
 }
 
-#left-column {
+#index-left-column {
   background-color: #f8f8f8;
   height: 100%;
   text-align: center;
@@ -33,7 +33,7 @@
 
 }
 
-#body-column {
+#index-body-column {
   background-color: #f8f8f8;
   margin-left: 1vw;
   text-align: center;

@@ -7,6 +7,7 @@
   <title>BazzR</title>
 </head>
 <body>
+
   <nav class="navbar navbar-default">
     <div id="navBar-container" class="container-fluid">
       <div class="navbar-header">
@@ -17,8 +18,8 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Trades
             <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Want to Buy</a></li>
-              <li><a href="#">Want to Sell</a></li>
+              <li><a href="#">Look for Games</a></li>
+              <li><a href="#">Trade a Game</a></li>
             </ul>
           </li>
         </ul>
@@ -29,18 +30,21 @@
               <span class="caret"></span></a>
               <ul id="LogIn_dropdown" class="dropdown-menu dropdown-menu-right">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Username:">
+                  <input type="text" class="form-control" placeholder="Username:" name="username">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" placeholder="Password:">
+                  <input type="password" class="form-control" placeholder="Password:" name="user-password">
                 </div>
                 <button type="submit" class="btn btn-info" name="button">Log In</button>
+                <br>
+                <br>
+                <a href="/user/create">Create an Account</a>
               </ul>
             </li>
           </ul>
           <form class="navbar-form navbar-right" action="#" method="post">
             <div class="input-group">
-              <input type="text" name="" value="" placeholder="Search">
+              <input type="text" name="topnav-search" value="" placeholder="Search">
               <div class="input-group-btn">
                 <button type="submit" class="btn btn-default" name="button"><i class="glyphicon glyphicon-search"></i></button>
               </div>
