@@ -47,6 +47,48 @@
   text-shadow: 0.25px 0.25px;
 }
 
+#new-user-form {
+  text-align: center;
+  background-color: #f8f8f8;
+  box-shadow: 1.5px 1.5px 5px;
+  border-radius: 10px;
+  padding-bottom: 15px;
+}
+
+#user-profile-column {
+  text-align: center;
+  background-color: #f8f8f8;
+  box-shadow: 1.5px 1.5px 5px;
+  border-radius: 10px;
+  padding-bottom: 15px;
+}
+
+#edit-user-profile {
+  text-align: center;
+  background-color: #f8f8f8;
+  box-shadow: 1.5px 1.5px 5px;
+  border-radius: 10px;
+  padding-bottom: 15px;
+}
+
+#filter-by-tag-column {
+  text-align: center;
+  background-color: #f8f8f8;
+  box-shadow: 1.5px 1.5px 5px;
+  border-radius: 10px;
+  padding-bottom: 15px;
+  margin-left: 1%;
+}
+
+#games-for-trade-column {
+  text-align: center;
+  background-color: #f8f8f8;
+  box-shadow: 1.5px 1.5px 5px;
+  border-radius: 10px;
+  padding-bottom: 15px;
+  margin-left: 3%;
+}
+
 .headerHighlight {
   background-color: yellowgreen;
   border-radius: 10px;

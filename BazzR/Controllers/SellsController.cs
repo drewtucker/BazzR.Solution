@@ -13,5 +13,5 @@ namespace BazzR.Controllers
 		{
 			return View("WantToSell");
 		}
-    }
+  }
 }
