@@ -1,83 +1,47 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using Bazzr.Models;
+using Bazzr;
 
-namespace Bazzr.Tests
-{
-    [TestClass]
-    public class UserTests : IDisposable
-    {
-        public UserTests()
-        {
-            DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=bazzr;";
-        }
-
-        public void Dispose()
-        {
-            User.DeleteAll();
-            Game.DeleteAll();
-            Tag.DeleteAll();
-        }
-
-        [TestMethod]
-        public void GetName_ReturnsUsername_String()
-        {
-            string testName = "Bob";
-            User testUser = new User(testName, "bob@gmail.com", "Bob", "Smith");
-
-            string result = testUser.GetName();
-
-            Assert.AreEqual(testName, result);
-        }
-
-        [TestMethod]
-        public void GetAll_UsersEmptyAtFirst_0()
-        {
-           int result = User.GetAll().Count;
-           Assert.AreEqual(0, result);
-        }
-
-        [TestMethod]
-        public void GetAll_ReturnsAllUsers_UserList()
-        {
-            string userName1 = "Super Mario World";
-            string gameName2 = "Zombies Ate My Neighbors";
-
-            User testUser1 = new User("Bob", "bob@gmail.com", "Bob", "Smith");
-            User testUser2 = new User("Chuck", "chuck@gmail.com", "Charles", "Smith");
-
-            newGame1.Save();
-            newGame2.Save();
-
-            List<User> newList = new List<User> {testUser1, testUser2};
-            List<User> result = User.GetAll();
-            CollectionAssert.AreEqual(newList, result);
-        }
-
-        [TestMethod]
-        public void Save_SavesUserToDatabase_UserList()
-        {
-            User testUser = new User("Bob", "bob@gmail.com", "Bob", "Smith");
-            testUser.Save();
-
-            List<User> testList = new List<User>{testUser};
-            List<User> resultList = User.GetAll();
-
-            CollectionAssert.AreEqual(testList, resultList);
-        }
-
-        [TestMethod]
-        public void Find_FindsUserInDatabase_User()
-        {
-            User testUser = new User("Bob", "bob@gmail.com", "Bob", "Smith");
-            testUser.Save();
-
-            User foundUser = User.Find(testUser.GetId());
-
-            Assert.AreEqual(testUser, foundUser);
-        }
-    }
-}
-
-}
+// namespace Bazzr.Tests
+// {
+//     [TestClass]
+//     public class UserTests : IDisposable
+//     {
+//         public UserTests()
+//         {
+//             DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=bazzr_test;";
+//         }
+//         public void Dispose()
+//         {
+//             User.DeleteAll();
+//         }
+//         [TestMethod]
+//         public void GetAll_DatabaseEmptyAtFirst_0()
+//         {
+//             int result = User.GetAll().Count;
+//             Assert.AreEqual(0, result);
+//         }
+//         [TestMethod]
+//         public void Save_SavesToDatabase_UserList()
+//         {
+//             DateTime dt = new DateTime(2008, 3, 9, 16, 5, 7);
+//             User testUser = new User("KSmith", "k@a.com", "Kevin", "Smith", "password", dt, 0, 1);
+//             testUser.Save();
+//             List<User> result = User.GetAll();
+//             List<User> testList = new List<User>{testUser};
+//             CollectionAssert.AreEqual(testList, result);
+//         }
+//
+//         [TestMethod]
+//         public void Find_FindsUserInDatabase_User()
+//         {
+//             DateTime dt = new DateTime(2008, 3, 9, 16, 5, 7);
+//             User testUser = new User("KSmith", "k@a.com", "Kevin", "Smith", "password", dt, 0, 1);
+//             testUser.Save();
+//             User result = User.Find(testUser.GetId());
+//             Assert.AreEqual(testUser, result);
+//         }
+//     }
+// }

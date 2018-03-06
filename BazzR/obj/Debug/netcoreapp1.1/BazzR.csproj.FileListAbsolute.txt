@@ -1,9 +1,0 @@
-/Users/Guest/Desktop/BazzR/BazzR/bin/Debug/netcoreapp1.1/BazzR.deps.json
-/Users/Guest/Desktop/BazzR/BazzR/bin/Debug/netcoreapp1.1/BazzR.runtimeconfig.json
-/Users/Guest/Desktop/BazzR/BazzR/bin/Debug/netcoreapp1.1/BazzR.runtimeconfig.dev.json
-/Users/Guest/Desktop/BazzR/BazzR/bin/Debug/netcoreapp1.1/BazzR.dll
-/Users/Guest/Desktop/BazzR/BazzR/bin/Debug/netcoreapp1.1/BazzR.pdb
-/Users/Guest/Desktop/BazzR/BazzR/obj/Debug/netcoreapp1.1/BazzR.csproj.CoreCompileInputs.cache
-/Users/Guest/Desktop/BazzR/BazzR/obj/Debug/netcoreapp1.1/BazzR.AssemblyInfo.cs
-/Users/Guest/Desktop/BazzR/BazzR/obj/Debug/netcoreapp1.1/BazzR.dll
-/Users/Guest/Desktop/BazzR/BazzR/obj/Debug/netcoreapp1.1/BazzR.pdb
