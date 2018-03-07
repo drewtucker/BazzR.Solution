@@ -183,6 +183,7 @@ namespace Bazzr.Models
 
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM games;";
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             int gameId = 0;
             string gameTitle = "";
@@ -243,6 +244,62 @@ namespace Bazzr.Models
             {
                 conn.Dispose();
             }
+        }
+
+        public void AddTag(Tag newTag)
+        {
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+
+          var cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"INSERT INTO games_tags (game_id, tag_id) VALUES (@gameId, @tagId);";
+
+          MySqlParameter gameId = new MySqlParameter("@gameId", _id);
+          MySqlParameter tagId = new MySqlParameter("@tagId", newTag.GetId());
+          cmd.Parameters.Add(gameId);
+          cmd.Parameters.Add(tagId);
+
+          cmd.ExecuteNonQuery();
+
+          conn.Close();
+          if(conn != null)
+          {
+              conn.Dispose();
+          }
+        }
+
+        public List<Tag> GetTags()
+        {
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+
+          var cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"SELECT tags.* FROM games
+            JOIN games_tags ON (games.id = games_tags.game_id)
+            JOIN tags ON (games_tags.tag_id = tags.id)
+            WHERE games.id = @gameId;";
+
+          MySqlParameter gameId = new MySqlParameter("@gameId", _id);
+          cmd.Parameters.Add(gameId);
+
+          List<Tag> relatedTags = new List<Tag>{};
+
+          MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+          while(rdr.Read())
+          {
+            int tagId = rdr.GetInt32(0);
+            string tagName = rdr.GetString(1);
+            Tag newTag = new Tag(tagName, tagId);
+            relatedTags.Add(newTag);
+          }
+
+          conn.Close();
+          if(conn != null)
+          {
+              conn.Dispose();
+          }
+
+          return relatedTags;
         }
 
         public void Delete()
