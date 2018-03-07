@@ -28,7 +28,7 @@ namespace Bazzr.Tests
         public void Save_SavesToDatabase_BuyOfferList()
         {
             DateTime dt = new DateTime(2008, 3, 9, 16, 5, 7);
-            Buy_Offer testBuy_Offer = new Buy_Offer(1, dt, 2, 3, 0);
+            Buy_Offer testBuy_Offer = new Buy_Offer(1, dt, 2, 3, "a", 4, 0);
             testBuy_Offer.Save();
             List<Buy_Offer> result = Buy_Offer.GetAll();
             List<Buy_Offer> testList = new List<Buy_Offer>{testBuy_Offer};
@@ -39,7 +39,7 @@ namespace Bazzr.Tests
         public void Find_FindsBuyOfferInDatabase_BuyOffer()
         {
             DateTime dt = new DateTime(2008, 3, 9, 16, 5, 7);
-            Buy_Offer testBuy_Offer = new Buy_Offer(1, dt, 2, 3, 0);
+            Buy_Offer testBuy_Offer = new Buy_Offer(1, dt, 2, 3, "a", 4, 0);
             testBuy_Offer.Save();
             Buy_Offer result = Buy_Offer.Find(testBuy_Offer.GetId());
             Assert.AreEqual(testBuy_Offer, result);
@@ -50,21 +50,23 @@ namespace Bazzr.Tests
         {
             DateTime dt = new DateTime(2008, 3, 9, 16, 5, 7);
             DateTime dt2 = new DateTime(2008, 1, 2, 3, 4, 5);
-            Buy_Offer testBuy_Offer = new Buy_Offer(1, dt, 2, 3, 0);
+            Buy_Offer testBuy_Offer = new Buy_Offer(1, dt, 2, 3, "a", 4, 0);
             testBuy_Offer.Save();
-            testBuy_Offer.Edit(5, dt2, 6, 7);
+            testBuy_Offer.Edit(5, dt2, 6, 7, 9, "b");
             Buy_Offer result = Buy_Offer.Find(testBuy_Offer.GetId());
-            Assert.AreEqual(5, result.GetGameId());
+            Assert.AreEqual(5, result.GetWGameId());
             Assert.AreEqual(dt2, result.GetDate());
             Assert.AreEqual(6, result.GetUserIdBuyer());
             Assert.AreEqual(7, result.GetSell_TransactionId());
+            Assert.AreEqual(9, result.GetOGameId());
+            Assert.AreEqual("b", result.GetComment());
         }
 
         [TestMethod]
         public void Delete_DeleteRemovesBuy_Offer_Buy_OfferList()
         {
             DateTime dt = new DateTime(2008, 3, 9, 16, 5, 7);
-            Buy_Offer testBuy_Offer = new Buy_Offer(1, dt, 2, 3, 0);
+            Buy_Offer testBuy_Offer = new Buy_Offer(1, dt, 2, 3, "a", 4, 0);
             testBuy_Offer.Save();
             testBuy_Offer.Delete();
             List<Buy_Offer> testList = new List<Buy_Offer>{};

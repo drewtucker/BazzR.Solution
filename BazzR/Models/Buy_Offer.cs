@@ -8,18 +8,22 @@ namespace Bazzr.Models
     public class Buy_Offer
     {
         private int _id;
-        private int _gameId;
+        private int _wantedGameId;
+        private int _offeredGameId;
         private int _offererId;
         private int _sellTransactionId;
+        private string _comment;
         private DateTime _date;
 
-        public Buy_Offer(int game_id, DateTime date, int offerer_id, int sell_transaction_id = 0, int id = 0)
+        public Buy_Offer(int wgame_id, DateTime date, int offerer_id, int ogame_id = 0, string comment = "", int sell_transaction_id = 0, int id = 0)
         {
             _id = id;
-            _gameId = game_id;
+            _wantedGameId = wgame_id;
+            _offeredGameId = ogame_id;
             _offererId = offerer_id;
             _date = date;
             _sellTransactionId = sell_transaction_id;
+            _comment = comment;
         }
 
         public override bool Equals(System.Object otherBuy_Offer)
@@ -45,10 +49,16 @@ namespace Bazzr.Models
             return _id;
         }
 
-        public int GetGameId()
+        public int GetWGameId()
         {
-            return _gameId;
+            return _wantedGameId;
         }
+
+        public int GetOGameId()
+        {
+            return _offeredGameId;
+        }
+
         public int GetUserIdBuyer()
         {
             return _offererId;
@@ -61,6 +71,10 @@ namespace Bazzr.Models
         {
             return _sellTransactionId;
         }
+        public string GetComment()
+        {
+            return _comment;
+        }
 
         public void Save()
         {
@@ -68,8 +82,8 @@ namespace Bazzr.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO buy_offer (offerer_id, game_id, sell_transaction_id, date)
-                VALUES (@OId, @GId, @STId, @Date);";
+            cmd.CommandText = @"INSERT INTO buy_offer (offerer_id, game_id, sell_transaction_id, date, offered_game_id, comment)
+                VALUES (@OId, @GId, @STId, @Date, @OGId, @cmmt);";
 
             MySqlParameter offerer_id = new MySqlParameter();
             offerer_id.ParameterName = "@OId";
@@ -77,7 +91,7 @@ namespace Bazzr.Models
             cmd.Parameters.Add(offerer_id);
             MySqlParameter game_id = new MySqlParameter();
             game_id.ParameterName = "@GId";
-            game_id.Value = _gameId;
+            game_id.Value = _wantedGameId;
             cmd.Parameters.Add(game_id);
             MySqlParameter sell_transaction_id = new MySqlParameter();
             sell_transaction_id.ParameterName = "@STId";
@@ -87,6 +101,14 @@ namespace Bazzr.Models
             date.ParameterName = "@Date";
             date.Value = _date;
             cmd.Parameters.Add(date);
+            MySqlParameter ogame_id = new MySqlParameter();
+            ogame_id.ParameterName = "OGId";
+            ogame_id.Value = _offeredGameId;
+            cmd.Parameters.Add(ogame_id);
+            MySqlParameter comment = new MySqlParameter();
+            comment.ParameterName = "@cmmt";
+            comment.Value = _comment;
+            cmd.Parameters.Add(comment);
 
             cmd.ExecuteNonQuery();
             _id = (int) cmd.LastInsertedId;
@@ -110,11 +132,13 @@ namespace Bazzr.Models
             {
                 int id = rdr.GetInt32(0);
                 int offererId = rdr.GetInt32(1);
-                int gameId = rdr.GetInt32(2);
+                int wgameId = rdr.GetInt32(2);
                 int transaction_sell_id = rdr.GetInt32(3);
                 DateTime date = rdr.GetDateTime(4);
+                int ogameId = rdr.GetInt32(5);
+                string comment = rdr.GetString(6);
 
-                Buy_Offer newBuy_Offer = new Buy_Offer(gameId, date, offererId, transaction_sell_id, id);
+                Buy_Offer newBuy_Offer = new Buy_Offer(wgameId, date, offererId, ogameId, comment, transaction_sell_id, id);
                 allBuy_Offer.Add(newBuy_Offer);
             }
             conn.Close();
@@ -155,19 +179,23 @@ namespace Bazzr.Models
 
             int foundid = 0;
             int offererId = 0;
-            int gameId = 0;
+            int wgameId = 0;
             int transaction_sell_id = 0;
             DateTime date = new DateTime (2000, 1, 1, 1, 0, 0);
+            int ogameId = 0;
+            string comment = "";
 
             while (rdr.Read())
             {
                 foundid = rdr.GetInt32(0);
                 offererId = rdr.GetInt32(1);
-                gameId = rdr.GetInt32(2);
+                wgameId = rdr.GetInt32(2);
                 transaction_sell_id = rdr.GetInt32(3);
                 date = rdr.GetDateTime(4);
+                ogameId = rdr.GetInt32(5);
+                comment = rdr.GetString(6);
             }
-            Buy_Offer foundBuy_Offer = new Buy_Offer(gameId, date, offererId, transaction_sell_id, foundid);
+            Buy_Offer foundBuy_Offer = new Buy_Offer(wgameId, date, offererId, ogameId, comment, transaction_sell_id, foundid);
 
             conn.Close();
             if (conn != null)
@@ -197,12 +225,13 @@ namespace Bazzr.Models
             }
         }
 
-        public void Edit(int ngameId, DateTime ndate, int noffererId, int nsellTransactionId)
+        public void Edit(int ngameId, DateTime ndate, int noffererId, int nsellTransactionId, int nogameid, string ncomment)
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"UPDATE buy_offer SET offerer_id = @OId, game_id = @GId, sell_transaction_id = @STId, date = @Date WHERE id = @thisId;";
+            cmd.CommandText = @"UPDATE buy_offer SET offerer_id = @OId, game_id = @WGId, sell_transaction_id = @STId,
+                date = @Date, offered_game_id = @OGId, comment = @cmmt WHERE id = @thisId;";
 
             MySqlParameter myid = new MySqlParameter();
             myid.ParameterName = "thisId";
@@ -213,7 +242,7 @@ namespace Bazzr.Models
             offerer_id.Value = noffererId;
             cmd.Parameters.Add(offerer_id);
             MySqlParameter game_id = new MySqlParameter();
-            game_id.ParameterName = "@GId";
+            game_id.ParameterName = "@WGId";
             game_id.Value = ngameId;
             cmd.Parameters.Add(game_id);
             MySqlParameter sell_transaction_id = new MySqlParameter();
@@ -224,6 +253,14 @@ namespace Bazzr.Models
             newdate.ParameterName = "@Date";
             newdate.Value = ndate;
             cmd.Parameters.Add(newdate);
+            MySqlParameter ogame_id = new MySqlParameter();
+            ogame_id.ParameterName = "OGId";
+            ogame_id.Value = nogameid;
+            cmd.Parameters.Add(ogame_id);
+            MySqlParameter comment = new MySqlParameter();
+            comment.ParameterName = "@cmmt";
+            comment.Value = ncomment;
+            cmd.Parameters.Add(comment);
 
             cmd.ExecuteNonQuery();
             conn.Close();

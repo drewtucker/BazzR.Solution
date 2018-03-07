@@ -11,6 +11,8 @@ CREATE TABLE `buy_offer` (
   `game_id` int(11) NOT NULL,
   `sell_transaction_id` int(11) NOT NULL,
   `date` datetime NOT NULL
+  `offered_game_id` int(11) NOT NULL,
+  `comment` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `games` (
