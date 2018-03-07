@@ -8,7 +8,7 @@ namespace BazzR.Controllers
 {
 	public class SellsController : Controller
 	{
-		[HttpGet("/offer/new")]
+		[HttpGet("/trade/new")]
 		public IActionResult Index()
 		{
 			return View("WantToSell");
