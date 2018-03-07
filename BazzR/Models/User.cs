@@ -172,21 +172,7 @@ namespace Bazzr.Models
 
         public void Delete()
         {
-            MySqlConnection conn = DB.Connection();
-            conn.Open();
-            var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"DELETE FROM users WHERE id = @UserId;";
 
-            MySqlParameter useridParameter = new MySqlParameter();
-            useridParameter.ParameterName = "@UserId";
-            useridParameter.Value = this.GetId();
-            cmd.Parameters.Add(useridParameter);
-
-            cmd.ExecuteNonQuery();
-            if (conn != null)
-            {
-                conn.Close();
-            }
         }
 
     }
