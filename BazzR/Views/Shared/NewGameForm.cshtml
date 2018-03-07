@@ -1,0 +1,40 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Add a new game:</h1>
+<div class="jumbotron">
+  @* <form action="../user/profile" method="post"> *@
+  <form action="/game" method="post">
+    Title: <input type="text" name="game-title">
+    Platform: <select type="text" name="game-platform">
+        <option>Nintendo Switch</option>
+        <option>Nintendo Wii U</option>
+        <option>Nintendo Wii</option>
+        <option>Nintendo GameCube</option>
+        <option>Nintendo 64</option>
+        <option>SNES</option>
+        <option>NES</option>
+        <option>Nintendo 3DS</option>
+        <option>Nintendo DS</option>
+        <option>Gameboy Advance</option>
+        <option>Gameboy Color</option>
+        <option>Playstation 4</option>
+        <option>Playstation 3</option>
+        <option>Playstation 2</option>
+        <option>Playstation</option>
+        <option>Playstation Portable</option>
+        <option>Playstation Vita</option>
+        <option>PC</option>
+        <option>Sega Genesis</option>
+        <option>Sega Saturn</option>
+        <option>Xbox</option>
+        <option>Xbox 360</option>
+        <option>Xbox One</option>
+    </select>
+    Description: <input type="text" name="game-description">
+    photopath url: <input type="text" name="game-photopath">
+    Metascore: <input type="number" name="game-metascore">
+    <button class="btn btn-success" type="submit" name="button">Submit</button>
+  </form>
+</div>
