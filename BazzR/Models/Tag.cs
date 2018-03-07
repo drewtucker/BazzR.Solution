@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Bazzr;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace Bazzr.Models
 {
@@ -52,7 +53,9 @@ namespace Bazzr.Models
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"INSERT INTO tags (name) VALUES (@name);";
 
-            MySqlParameter name = new MySqlParameter("@name", _name);
+            MySqlParameter name = new MySqlParameter();
+            name.ParameterName = "@name";
+            name.Value = _name;
             cmd.Parameters.Add(name);
 
             cmd.ExecuteNonQuery();
@@ -73,7 +76,9 @@ namespace Bazzr.Models
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"SELECT * FROM tags WHERE id = @id;";
 
-            MySqlParameter searchTagId = new MySqlParameter("@id", id);
+            MySqlParameter searchTagId = new MySqlParameter();
+            searchTagId.ParameterName = "@id";
+            searchTagId.Value = id;
             cmd.Parameters.Add(searchTagId);
 
             int tagId = 0;
@@ -130,7 +135,9 @@ namespace Bazzr.Models
             var cmd =  conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"DELETE FROM tags WHERE id = @thisId";
 
-            MySqlParameter searchId = new MySqlParameter("@thisId", _id);
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@thisId";
+            searchId.Value = _id;
             cmd.Parameters.Add(searchId);
 
             cmd.ExecuteNonQuery();
@@ -166,8 +173,12 @@ namespace Bazzr.Models
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"UPDATE tags SET name = @newTagName WHERE id = @id;";
 
-            MySqlParameter newTagName = new MySqlParameter("@newTagName", newName);
-            MySqlParameter id = new MySqlParameter("@id", _id);
+            MySqlParameter newTagName = new MySqlParameter();
+            newTagName.ParameterName = "@newTagName";
+            newTagName.Value = newName;
+            MySqlParameter id = new MySqlParameter();
+            id.ParameterName = "@newTagName";
+            id.Value = _id;
 
             cmd.Parameters.Add(newTagName);
             cmd.Parameters.Add(id);

@@ -111,19 +111,30 @@ namespace Bazzr.Models
             cmd.CommandText = @"INSERT INTO games (title, platform, description, photopath, metascore)
             VALUES (@title, @platform, @description, @photopath, @metascore);";
 
-            MySqlParameter title = new MySqlParameter("@title", _title);
+            MySqlParameter title = new MySqlParameter();
+            title.ParameterName ="@title";
+            title.Value = _title;
             cmd.Parameters.Add(title);
 
-            MySqlParameter platform = new MySqlParameter("@platform", _platform);
+            MySqlParameter platform = new MySqlParameter();
+            platform.ParameterName = "@platform";
+            platform.Value = _platform;
             cmd.Parameters.Add(platform);
 
-            MySqlParameter description = new MySqlParameter("@description", _description);
+            MySqlParameter description = new MySqlParameter();
+            description.ParameterName = "@description";
+            description.Value = _description;
             cmd.Parameters.Add(description);
 
-            MySqlParameter photopath = new MySqlParameter("@photopath", _photopath);
+            MySqlParameter photopath = new MySqlParameter();
+            photopath.ParameterName = "@photopath";
+            photopath.ParameterName = _photopath;
+
             cmd.Parameters.Add(photopath);
 
-            MySqlParameter metascore = new MySqlParameter("@metascore", _metascore);
+            MySqlParameter metascore = new MySqlParameter();
+            metascore.ParameterName = "@metascore";
+            metascore.Value = _metascore;
             cmd.Parameters.Add(metascore);
 
             cmd.ExecuteNonQuery();
@@ -144,7 +155,9 @@ namespace Bazzr.Models
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"SELECT * FROM games WHERE id = @searchId;";
 
-            MySqlParameter searchId = new MySqlParameter("@searchId", id);
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@searchId";
+            searchId.Value = id;
             cmd.Parameters.Add(searchId);
 
             MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
@@ -221,11 +234,21 @@ namespace Bazzr.Models
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"UPDATE games SET title = @newTitle, platform = @newPlatform, description = @newDescription, photopath = @newPhotopath, metascore = @newMetascore WHERE id=@id;";
 
-            MySqlParameter updateTitle = new MySqlParameter("@newTitle", newTitle);
-            MySqlParameter updatePlatform = new MySqlParameter("@newPlatform", newPlatform);
-            MySqlParameter updateDescription = new MySqlParameter("@newDescription", newDescription);
-            MySqlParameter updatePhotopath = new MySqlParameter("@newPhotopath", newPhotopath);
-            MySqlParameter updateMetascore = new MySqlParameter("@newMetascore", newMetascore);
+            MySqlParameter updateTitle = new MySqlParameter();
+            updateTitle.ParameterName ="@newTitle";
+            updateTitle.Value = newTitle;
+            MySqlParameter updatePlatform = new MySqlParameter();
+            updatePlatform.ParameterName ="@newPlatform";
+            updatePlatform.Value = newPlatform;
+            MySqlParameter updateDescription = new MySqlParameter();
+            updateDescription.ParameterName ="@newDescription";
+            updateDescription.Value = newDescription;
+            MySqlParameter updatePhotopath = new MySqlParameter();
+            updatePhotopath.ParameterName ="@newPhotopath";
+            updatePhotopath.Value = newPhotopath;
+            MySqlParameter updateMetascore = new MySqlParameter();
+            updateMetascore.ParameterName ="@newMetascore";
+            updateMetascore.Value = newMetascore;
             cmd.Parameters.Add(updateTitle);
             cmd.Parameters.Add(updatePlatform);
             cmd.Parameters.Add(updateDescription);
@@ -310,7 +333,9 @@ namespace Bazzr.Models
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"DELETE FROM games WHERE id = @thisId;";
 
-            MySqlParameter searchId = new MySqlParameter ("@thisId", _id);
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@thisId";
+            searchId.Value = _id;
             cmd.Parameters.Add(searchId);
 
             cmd.ExecuteNonQuery();

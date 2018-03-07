@@ -5,12 +5,13 @@ using Bazzr;
 
 namespace Bazzr.Models
 {
-    public class DB
-    {
-        public static MySqlConnection Connection()
-        {
-            MySqlConnection conn = new MySqlConnection(DBConfiguration.ConnectionString);
-            return conn;
-        }
-    }
+   public class DB
+   {
+        
+       public static MySqlConnection Connection()
+       {
+           MySqlConnection conn = new MySqlConnection(DBConfiguration.ConnectionString);
+           return conn;
+       }
+   }
 }
