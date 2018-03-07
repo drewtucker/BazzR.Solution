@@ -7,7 +7,6 @@ namespace BasicAuthentication.Models
 	public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 	{
         public DbSet<User> Users { get; set; }
-        //public DbSet<User> Users { get; set; }
 		public ApplicationDbContext(DbContextOptions options) : base(options)
 		{
 
