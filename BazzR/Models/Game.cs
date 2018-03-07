@@ -128,7 +128,7 @@ namespace Bazzr.Models
 
             MySqlParameter photopath = new MySqlParameter();
             photopath.ParameterName = "@photopath";
-            photopath.ParameterName = _photopath;
+            photopath.Value = _photopath;
 
             cmd.Parameters.Add(photopath);
 
