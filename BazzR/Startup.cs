@@ -1,47 +1,62 @@
-﻿﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//﻿using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using MySql.Data.MySqlClient;
+//using MySql.Data.MySqlClient;
+//using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using Bazzr.Models;
+using BasicAuthentication.Models;
+//using Bazzr.Models;
+//using Microsoft.AspNetCore.Http;
+
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Bazzr
 {
 	public static class DBConfiguration
 	{
-		public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=bazzr;";
+        public static string ConnectionString = "Server=localhost;Port=8889;database=bazzr;uid=root;pwd=root;";
 	}
     public class Startup
     {
         public Startup(IHostingEnvironment env)
         {
             env.EnvironmentName = "Development";
-            var builder = new ConfigurationBuilder()
+            var builder = new ConfigurationBuilder() 
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
+        public IConfigurationRoot Configuration { get; set; }
+		public void ConfigureServices(IServiceCollection services)
+		{
 
-        public IConfigurationRoot Configuration { get; }
+            services.AddEntityFrameworkMySql()
+              .AddDbContext<ApplicationDbContext>(options => 
+                                                  options.
+                                                  UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+              .AddEntityFrameworkStores<ApplicationDbContext>()
+              .AddDefaultTokenProviders();
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            // Add framework services.
-            services.AddMvc();
-			services.AddEntityFrameworkMySql();
-			// .AddDbContext<User>(options =>
-			// 						  options
-			// 							   .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
-        }
+
+			services.AddMvc();
+            // This is new:   
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 0;
+                options.Password.RequireDigit = false;
+            });
+}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -58,14 +73,14 @@ namespace Bazzr
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
             app.UseStaticFiles();
+			app.UseIdentity();
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Account}/{action=Index}/{id?}");
             });
         }
     }

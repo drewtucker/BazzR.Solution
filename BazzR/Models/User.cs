@@ -6,6 +6,14 @@ using Bazzr;
 
 namespace Bazzr.Models
 {
+    [Table("Users")]
+    public class User
+    {
+        [Key]
+		public int Id { get => Id; set => Id = value; }
+        public string Name { get => Name; set => Name = value; }
+    }
+}
 //     public class User
 //     {
 //         [Key]
@@ -224,4 +232,4 @@ namespace Bazzr.Models
 //         }
 
 //     }
-}
+//}

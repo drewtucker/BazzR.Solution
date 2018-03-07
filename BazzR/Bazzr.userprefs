@@ -1,0 +1,20 @@
+﻿<Properties StartupConfiguration="{2425D3AE-B320-438C-B08B-95130EFDCBDB}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ViewModel/RegisterViewModel.cs">
+    <Files>
+      <File FileName="Views/Account/Register.cshtml" Line="7" Column="1" />
+      <File FileName="Controllers/AccountController.cs" Line="57" Column="14" />
+      <File FileName="ViewModel/LoginViewModel.cs" Line="8" Column="2" />
+      <File FileName="Views/Account/Login.cshtml" Line="13" Column="5" />
+      <File FileName="Controllers/UsersController.cs" Line="13" Column="4" />
+      <File FileName="Views/Account/Index.cshtml" Line="22" Column="2" />
+      <File FileName="ViewModel/RegisterViewModel.cs" Line="22" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Bazzr PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+</Properties>
