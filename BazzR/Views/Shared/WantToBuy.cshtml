@@ -1,14 +1,13 @@
 @{
   Layout = "_Layout";
 }
+<div id="filter-by-tag-column" class="col-sm-3">
+  <h4 class="headerHighlight">Filter by Tag:</h4>
 
-<div class="col-sm-10">
+</div>
+
+
+<div id="games-for-trade-column" class="col-sm-8">
   <h4 class="headerHighlight">Games up For Trade:</h4>
-  @if (Model != null)
-  {
-    @foreach(var sell_transaction in Sell_Transaction.GetAll())
-    {
-      
-    }
-  }
+  
 </div>
