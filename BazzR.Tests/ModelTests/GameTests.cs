@@ -15,7 +15,7 @@ namespace Bazzr.Tests
 
         public void Dispose()
         {
-            //User.DeleteAll();
+            // User.DeleteAll();
             Game.DeleteAll();
             Tag.DeleteAll();
         }
@@ -50,6 +50,38 @@ namespace Bazzr.Tests
             List<Game> testList = new List<Game> {testGame1, testGame2};
             List<Game> result = Game.GetAll();
             CollectionAssert.AreEqual(testList, result);
+        }
+
+        [TestMethod]
+        public void Edit_UpdatesGamePropertiesInDatabase_Game()
+        {
+          //arrange
+          Game testGame = new Game("Zelda", "SNES", "Great game", "dummyURL", 100, 0);
+          testGame.Save();
+
+          string updateTitle = "The Legend of Zelda";
+          string updatePlatform = "Super Nintendo";
+          string updateDescription = "Cutting edge graphics";
+          string updatePhotopath = "dumbURL";
+          int updateMetascore = 98;
+
+          testGame.Edit(updateTitle, updatePlatform, updateDescription, updatePhotopath, updateMetascore);
+
+          string resultTitle = Game.Find(testGame.GetId()).GetTitle();
+          string resultPlatform = Game.Find(testGame.GetId()).GetPlatform();
+          string resultDescription = Game.Find(testGame.GetId()).GetDescription();
+          string resultPhotoPath = Game.Find(testGame.GetId()).GetPhotoPath();
+          int resultMetascore = Game.Find(testGame.GetId()).GetMetaScore();
+
+          Game resultGame = new Game(resultTitle, resultPlatform, resultDescription, resultPhotoPath, resultMetascore);
+          resultGame.Save();
+
+          //assert
+          Assert.AreEqual(updateTitle, resultTitle);
+          Assert.AreEqual(updatePlatform, resultPlatform);
+          Assert.AreEqual(updateDescription, resultDescription);
+          Assert.AreEqual(updatePhotopath, resultPhotoPath);
+          Assert.AreEqual(updateMetascore, resultMetascore);
         }
 
         [TestMethod]

@@ -234,6 +234,10 @@ namespace Bazzr.Models
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"UPDATE games SET title = @newTitle, platform = @newPlatform, description = @newDescription, photopath = @newPhotopath, metascore = @newMetascore WHERE id=@id;";
 
+            MySqlParameter id = new MySqlParameter();
+            id.ParameterName ="@id";
+            id.Value = _id;
+
             MySqlParameter updateTitle = new MySqlParameter();
             updateTitle.ParameterName ="@newTitle";
             updateTitle.Value = newTitle;
@@ -254,6 +258,7 @@ namespace Bazzr.Models
             cmd.Parameters.Add(updateDescription);
             cmd.Parameters.Add(updatePhotopath);
             cmd.Parameters.Add(updateMetascore);
+            cmd.Parameters.Add(id);
 
             cmd.ExecuteNonQuery();
             _title = newTitle;
