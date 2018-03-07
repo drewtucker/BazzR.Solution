@@ -13,37 +13,23 @@
       <div class="navbar-header">
         <a id="navBrand" class="navbar-brand" href="/">BazzR</a>
       </div>
+
       <ul class="nav navbar-nav">
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Trades
             <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/search/all">Look for Games</a></li>
-              <li><a href="#">Trade a Game</a></li>
+              <li><a href="/trade/new">Trade a Game</a></li>
             </ul>
           </li>
         </ul>
+
         <p id="info_header" class="navbar-text"><em>Find, Offer, and Trade Games</em></p>
-        <ul id="logIn_button" class="nav navbar-nav">
-          <li  class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Log In
-              <span class="caret"></span></a>
-              <form action="/user/profile" method="post">
-              <ul id="LogIn_dropdown" class="dropdown-menu dropdown-menu-right">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Username:" name="username">
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control" placeholder="Password:" name="user-password">
-                </div>
-                <button type="submit" class="btn btn-info" name="button">Log In</button>
-              </form>
-                <br>
-                <br>
-                <a href="/user/create">Create an Account</a>
-              </ul>
-            </li>
-          </ul>
+
+        <!-- Log in dropdown Form on NavBar -->
+        @Html.Partial("LogInForm")
+
           <form class="navbar-form navbar-right" action="#" method="post">
             <div class="input-group">
               <input type="text" name="topnav-search" value="" placeholder="Search">
