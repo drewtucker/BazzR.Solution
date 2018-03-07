@@ -37,6 +37,7 @@ namespace BasicAuthentication.Controllers
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
+				Console.WriteLine(user.Id);
                 return RedirectToAction("Index");
             }
             else
