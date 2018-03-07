@@ -15,58 +15,30 @@ namespace Bazzr.Models
         private string _email;
         private string _firstName;
         private string _lastName;
-        private string _hashed_password;
         private int _reputation;
         private DateTime _dateRegistered;
+
+        public int Id { get => _id; set => _id = value; }
+        public string Username { get => _username; set => _username = value; }
+        public string Email { get => _email; set => _email = value; }
+        public string FirstName { get => _firstName; set => _firstName = value; }
+        public string LastName { get => _lastName; set => _lastName = value; }
+        public int Reputation { get => _reputation; set => _reputation = value; }
+        public DateTime DateRegistered { get => _dateRegistered; set => _dateRegistered = value; }
+
         //need to incorporate password
 
         public User(string username, string email, string firstName, string lastName, DateTime datereg, int rep = 0, int id = 0)
         {
-          _id = id;
-          _username = username;
-          _email = email;
-          _firstName = firstName;
-          _lastName = lastName;
-          _reputation = rep;
-          _dateRegistered = datereg;
+          Id = id;
+          Username = username;
+          Email = email;
+          FirstName = firstName;
+          LastName = lastName;
+          Reputation = rep;
+          DateRegistered = datereg;
        }
 
-        public override bool Equals(System.Object otherUser)
-        {
-          if (!(otherUser is User))
-          {
-            return false;
-          }
-          else
-          {
-            User newUser = (User) otherUser;
-            return this.GetId().Equals(newUser.GetId());
-          }
-            if (!(otherUser is User))
-            {
-                return false;
-            }
-            else
-            {
-                User newUser = (User)otherUser;
-                return this.GetId().Equals(newUser.GetId());
-            }
-       }
-
-        public override int GetHashCode()
-        {
-            return this.GetId().GetHashCode();
-        }
-
-        public string GetName()
-        {
-            return _username;
-        }
-
-        public int GetId()
-        {
-          return _id;
-        }
 
         public static List<User> GetAll()
         {
@@ -125,32 +97,30 @@ namespace Bazzr.Models
 
             MySqlParameter username = new MySqlParameter();
             username.ParameterName = "@UserName";
-            username.Value = _username;
+            username.Value = Username;
             cmd.Parameters.Add(username);
             MySqlParameter email = new MySqlParameter();
             email.ParameterName = "@Email";
-            email.Value = _email;
+            email.Value = Email;
             cmd.Parameters.Add(email);
             MySqlParameter firstname = new MySqlParameter();
             firstname.ParameterName = "@FirstName";
-            firstname.Value = _firstName;
+            firstname.Value = FirstName;
             cmd.Parameters.Add(firstname);
             MySqlParameter lastname = new MySqlParameter();
             lastname.ParameterName = "@LastName";
-            lastname.Value = _lastName;
+            lastname.Value = LastName;
             cmd.Parameters.Add(lastname);
             MySqlParameter rep = new MySqlParameter();
             rep.ParameterName = "@Rep";
-            rep.Value = _reputation;
+            rep.Value = Reputation;
             cmd.Parameters.Add(rep);
             MySqlParameter date = new MySqlParameter();
             date.ParameterName = "@Date";
-            date.Value = _dateRegistered;
+            date.Value = DateRegistered;
             cmd.Parameters.Add(date);
 
             cmd.ExecuteNonQuery();
-            _id = (int) cmd.LastInsertedId;
-
             conn.Close();
             if (conn != null)
             {
