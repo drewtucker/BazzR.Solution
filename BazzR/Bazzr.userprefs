@@ -1,13 +1,14 @@
-﻿<Properties StartupConfiguration="{2425D3AE-B320-438C-B08B-95130EFDCBDB}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="ViewModel/RegisterViewModel.cs">
+﻿<Properties StartupConfiguration="{8F92B359-F12B-49C5-9BC7-F37CC6A60837}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Tag.cs">
     <Files>
-      <File FileName="Views/Account/Register.cshtml" Line="7" Column="1" />
-      <File FileName="Controllers/AccountController.cs" Line="57" Column="14" />
-      <File FileName="ViewModel/LoginViewModel.cs" Line="8" Column="2" />
-      <File FileName="Views/Account/Login.cshtml" Line="13" Column="5" />
-      <File FileName="Controllers/UsersController.cs" Line="13" Column="4" />
-      <File FileName="Views/Account/Index.cshtml" Line="22" Column="2" />
-      <File FileName="ViewModel/RegisterViewModel.cs" Line="22" Column="3" />
+      <File FileName="Views/Account/Register.cshtml" Line="1" Column="1" />
+      <File FileName="Controllers/AccountController.cs" Line="29" Column="4" />
+      <File FileName="ViewModel/LoginViewModel.cs" Line="1" Column="1" />
+      <File FileName="Views/Account/Login.cshtml" Line="1" Column="1" />
+      <File FileName="Controllers/UsersController.cs" Line="1" Column="1" />
+      <File FileName="Views/Account/Index.cshtml" Line="1" Column="1" />
+      <File FileName="ViewModel/RegisterViewModel.cs" Line="1" Column="1" />
+      <File FileName="Models/Tag.cs" Line="52" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />

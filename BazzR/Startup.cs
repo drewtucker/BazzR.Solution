@@ -1,24 +1,16 @@
-﻿//﻿using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-//using MySql.Data.MySqlClient;
-//using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using BasicAuthentication.Models;
-//using Bazzr.Models;
-//using Microsoft.AspNetCore.Http;
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Bazzr
 {
-	public static class DBConfiguration
+    public static class DBConfiguration
 	{
         public static string ConnectionString = "Server=localhost;Port=8889;database=bazzr;uid=root;pwd=root;";
 	}

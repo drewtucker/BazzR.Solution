@@ -1,8 +1,8 @@
 @using BasicAuthentication.ViewModels
 @model LoginViewModel
 
-<form
-@{
+@using (Html.BeginForm())
+{
     <span style="color: black;">@Html.LabelFor(m => m.Email)</span>
     @Html.TextBoxFor(m => m.Email)
 
@@ -11,6 +11,5 @@
     <hr>
     <input type="submit" value="Log in" class="btn btn-default" />
 }
-</form>
 <p></p>
 <a href="/Account/Register">Create an Account</a>
