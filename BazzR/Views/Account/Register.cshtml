@@ -14,18 +14,36 @@
 <hr />
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
-    <div class="col">
-    @Html.LabelFor(user => user.Email)
-    @Html.TextBoxFor(user=> user.Email)
-
-    @Html.LabelFor(user=> user.Password)
-    @Html.PasswordFor(user=> user.Password)
-
-    @Html.LabelFor(user=> user.ConfirmPassword)
-    @Html.PasswordFor(user=> user.ConfirmPassword)
-
-    <input type="submit" value="Register" />
+  <div class="grid-container">
+    <div class="grid-item">
+    <p>Nickname</p>
+    <input type="text" name="nickname">
     </div>
+    <div class="grid-item">
+    <p>Email</p>
+    @Html.TextBoxFor(user=> user.Email)
+    </div>
+    <div class="grid-item">
+    <p>Password</p>
+    @Html.PasswordFor(user=> user.Password)
+    </div>
+    <div class="grid-item">
+    <p>Confirm Password</p>
+    @Html.PasswordFor(user=> user.ConfirmPassword)
+    </div>
+    <div class="grid-item">
+    <p>First Name</p>
+    <input type="text" name="first-name">
+    </div>
+    <div class="grid-item">
+    <p>Last Name</p>
+    <input type="text" name="last-name">
+    </div>
+    </div>
+    <hr>
+<p>🔥Nickname is not used for logging in. 🔥</p>
+    <input type="submit" value="Register" />
 }
+
 </div>
 </div>
