@@ -20,8 +20,8 @@ namespace Bazzr.Models
             _title = title;
             _platform = platform;
             _description = description;
-            _photoPath = photopath;
-            _metaScore = metascore;
+            _photopath = photopath;
+            _metascore = metascore;
         }
 
         public override bool Equals(System.Object otherGame)
@@ -111,7 +111,7 @@ namespace Bazzr.Models
             cmd.CommandText = @"INSERT INTO games (title, platform, description, photopath, metascore)
             VALUES (@title, @platform, @description, @photopath, @metascore);";
 
-            MySqlParameter name = new MySqlParameter("@title", _title);
+            MySqlParameter title = new MySqlParameter("@title", _title);
             cmd.Parameters.Add(title);
 
             MySqlParameter platform = new MySqlParameter("@platform", _platform);
@@ -184,7 +184,14 @@ namespace Bazzr.Models
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
-            while(rdr.Read());
+            int gameId = 0;
+            string gameTitle = "";
+            string gamePlatform = "";
+            string gameDescription = "";
+            string gamePhotopath = "";
+            int gameMetascore = 0;
+
+            while(rdr.Read())
             {
                 gameId = rdr.GetInt32(0);
                 gameTitle = rdr.GetString(1);
@@ -205,7 +212,7 @@ namespace Bazzr.Models
             return allGames;
         }
 
-        public void Edit(string newTitle, string newPlatform, string newDescription, string newPhotopath, string newMetascore)
+        public void Edit(string newTitle, string newPlatform, string newDescription, string newPhotopath, int newMetascore)
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
@@ -240,13 +247,13 @@ namespace Bazzr.Models
 
         public void Delete()
         {
-            MySqlConnection cmd = DB.Connection();
+            MySqlConnection conn = DB.Connection();
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"DELETE FROM games WHERE id = @thisId;";
 
-            MySqlParameter searchId = newMySqlParameter("@thisId", _id);
+            MySqlParameter searchId = new MySqlParameter ("@thisId", _id);
             cmd.Parameters.Add(searchId);
 
             cmd.ExecuteNonQuery();
@@ -260,7 +267,7 @@ namespace Bazzr.Models
 
         public static void DeleteAll()
         {
-            MySqlConnection cmd = DB.Connection();
+            MySqlConnection conn = DB.Connection();
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;

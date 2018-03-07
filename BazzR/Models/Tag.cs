@@ -77,13 +77,13 @@ namespace Bazzr.Models
             cmd.Parameters.Add(searchTagId);
 
             int tagId = 0;
-            string tagName = ""
+            string tagName = "";
 
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             while(rdr.Read())
             {
-                int tagId = rdr.GetInt32(0);
-                string tagName = rdr.GetString(1);
+                tagId = rdr.GetInt32(0);
+                tagName = rdr.GetString(1);
             }
 
             conn.Close();
@@ -119,6 +119,7 @@ namespace Bazzr.Models
             {
                 conn.Dispose();
             }
+            return allTags;
         }
 
         public void Delete()
