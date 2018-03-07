@@ -1,20 +1,10 @@
-﻿@{
-  Layout = "_Layout";
-}
 @using BasicAuthentication.ViewModels
-
 @model RegisterViewModel
 
-
-<div class="container">
-<div id="new-user-form" class="col">
-  <h4 class="headerHighlight">Create an Account:</h4>
-  <hr>
-  <h2>Register a new user</h2>
+<h2>Register a new user</h2>
 <hr />
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
-    <div class="col">
     @Html.LabelFor(user => user.Email)
     @Html.TextBoxFor(user=> user.Email)
 
@@ -25,7 +15,4 @@
     @Html.PasswordFor(user=> user.ConfirmPassword)
 
     <input type="submit" value="Register" />
-    </div>
 }
-</div>
-</div>

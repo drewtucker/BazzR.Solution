@@ -26,6 +26,25 @@
         </ul>
         <div class="input-group"></div>
         <p id="info_header" class="navbar-text"><em>Find, Offer, and Trade Games</em></p>
+        @if (User.Identity.IsAuthenticated)
+        {
+          @*<p class="pull-right navbar-text">@User.Identity.Name</p>*@
+          <ul id="logIn_button" class="nav navbar-nav">
+            <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">@User.Identity.Name
+              <span class="caret"></span></a>
+              <ul id="LogIn_dropdown" class="dropdown-menu dropdown-menu-right">
+                @*//SHOW REP HERE!!!!*@
+                @using (Html.BeginForm("LogOff", "Account"))
+                  {
+                    <input type="submit" class="btn btn-danger" value="Log Out" />
+                  }
+              </ul>
+              </li>
+          </ul>
+        }
+        else
+        {
         <ul id="logIn_button" class="nav navbar-nav">
           <li  class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sign In / Sign Up
@@ -46,6 +65,7 @@
               </ul>
             </li>
           </ul>
+        }
           <form class="navbar-form navbar-right" action="#" method="post">
             <div class="input-group">
               <input type="text" name="topnav-search" value="" placeholder="Search">
