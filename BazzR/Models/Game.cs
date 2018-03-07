@@ -277,8 +277,12 @@ namespace Bazzr.Models
           var cmd = conn.CreateCommand() as MySqlCommand;
           cmd.CommandText = @"INSERT INTO games_tags (game_id, tag_id) VALUES (@gameId, @tagId);";
 
-          MySqlParameter gameId = new MySqlParameter("@gameId", _id);
-          MySqlParameter tagId = new MySqlParameter("@tagId", newTag.GetId());
+          MySqlParameter gameId = new MySqlParameter();
+          gameId.ParameterName = "@gameId";
+          gameId.Value = _id;
+          MySqlParameter tagId = new MySqlParameter();
+          tagId.ParameterName = "@tagId";
+          tagId.Value = newTag.GetId();
           cmd.Parameters.Add(gameId);
           cmd.Parameters.Add(tagId);
 
@@ -302,7 +306,9 @@ namespace Bazzr.Models
             JOIN tags ON (games_tags.tag_id = tags.id)
             WHERE games.id = @gameId;";
 
-          MySqlParameter gameId = new MySqlParameter("@gameId", _id);
+          MySqlParameter gameId = new MySqlParameter();
+          gameId.ParameterName = "@gameId";
+          gameId.Value = _id;
           cmd.Parameters.Add(gameId);
 
           List<Tag> relatedTags = new List<Tag>{};
