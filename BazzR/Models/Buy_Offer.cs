@@ -146,7 +146,7 @@ namespace Bazzr.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM buy_offer WHERE id = (@searchId);";
+            cmd.CommandText = @"SELECT * FROM buy_offer WHERE id = @searchId;";
             MySqlParameter searchId = new MySqlParameter();
             searchId.ParameterName = "@searchId";
             searchId.Value = id;
@@ -177,8 +177,60 @@ namespace Bazzr.Models
             return foundBuy_Offer;
         }
 
+        public void Delete()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM buy_offer WHERE id = @searchId;";
 
-      //public void Edit(string newTitle, etc.)
-      //edit title / other options in database
+            MySqlParameter myid = new MySqlParameter();
+            myid.ParameterName = "searchId";
+            myid.Value = _id;
+            cmd.Parameters.Add(myid);
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
+        public void Edit(int ngameId, DateTime ndate, int noffererId, int nsellTransactionId)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"UPDATE buy_offer SET offerer_id = @OId, game_id = @GId, sell_transaction_id = @STId, date = @Date WHERE id = @thisId;";
+
+            MySqlParameter myid = new MySqlParameter();
+            myid.ParameterName = "thisId";
+            myid.Value = _id;
+            cmd.Parameters.Add(myid);
+            MySqlParameter offerer_id = new MySqlParameter();
+            offerer_id.ParameterName = "@OId";
+            offerer_id.Value = noffererId;
+            cmd.Parameters.Add(offerer_id);
+            MySqlParameter game_id = new MySqlParameter();
+            game_id.ParameterName = "@GId";
+            game_id.Value = ngameId;
+            cmd.Parameters.Add(game_id);
+            MySqlParameter sell_transaction_id = new MySqlParameter();
+            sell_transaction_id.ParameterName = "@STId";
+            sell_transaction_id.Value = nsellTransactionId;
+            cmd.Parameters.Add(sell_transaction_id);
+            MySqlParameter newdate = new MySqlParameter();
+            newdate.ParameterName = "@Date";
+            newdate.Value = ndate;
+            cmd.Parameters.Add(newdate);
+
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
     }
 }
