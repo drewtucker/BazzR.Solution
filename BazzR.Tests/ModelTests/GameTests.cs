@@ -142,5 +142,79 @@ namespace Bazzr.Tests
 
             CollectionAssert.AreEqual(testList, result);
         }
+
+        [TestMethod]
+        public void Score_Scores3forSingleWordMatch_3()
+        {
+            Game testGame = new Game("Tetris", "SNES", "", "", 0);
+            testGame.Save();
+            string query = "Tetris";
+            int score = testGame.Score(query);
+            Assert.AreEqual(3, score);
+        }
+
+        [TestMethod]
+        public void Score_Scores0forNoMatch_0()
+        {
+            Game testGame = new Game("Super Mario World", "SNES", "", "", 0);
+            testGame.Save();
+            string query = "Tetris";
+            int score = testGame.Score(query);
+            Assert.AreEqual(0, score);
+        }
+
+        [TestMethod]
+        public void Score_Scores2forPartMatch_2()
+        {
+            Game testGame = new Game("Dark Souls 3", "SNES", "", "", 0);
+            testGame.Save();
+            string query = "Dark Horizon";
+            int score = testGame.Score(query);
+            Assert.AreEqual(2, score);
+        }
+
+        [TestMethod]
+        public void Search_EmptyForNoMatch_GameList()
+        {
+            Game testGame = new Game("Dark Souls 3", "SNES", "", "", 0);
+            testGame.Save();
+            string query = "Tetris";
+            List<Game> resultList = Game.Search(query);
+            List<Game> testList = new List<Game>{};
+            CollectionAssert.AreEqual(testList, resultList);
+        }
+
+        [TestMethod]
+        public void Search_TwoForTwoMatches_GameList()
+        {
+            Game testGame = new Game("Dark Souls 3", "SNES", "", "", 0);
+            testGame.Save();
+            Game testGame2 = new Game("Dark Souls 2", "SNES", "", "", 0);
+            testGame2.Save();
+            Game testGame3 = new Game("Super Mario World", "SNES", "", "", 0);
+            testGame3.Save();
+            string query = "Dark Souls 2";
+            List<Game> resultList = Game.Search(query);
+            List<Game> testList = new List<Game>{testGame2, testGame};
+            CollectionAssert.AreEqual(testList, resultList);
+        }
+
+        [TestMethod]
+        public void Search_FourMatchesInFiveReordered_GameList()
+        {
+            Game testGame = new Game("Dark Souls 3", "SNES", "", "", 0);
+            testGame.Save();
+            Game testGame2 = new Game("Dark Souls", "SNES", "", "", 0);
+            testGame2.Save();
+            Game testGame3 = new Game("Super Mario World", "SNES", "", "", 0);
+            testGame3.Save();
+            Game testGame4 = new Game("Perfect Dark", "Xbox", "", "", 0);
+            testGame4.Save();
+            string query = "Dark Souls";
+            List<Game> resultList = Game.Search(query);
+            Console.WriteLine(resultList[0].GetTitle());
+            List<Game> testList = new List<Game>{testGame2, testGame, testGame4};
+            CollectionAssert.AreEqual(testList, resultList);
+        }
     }
 }

@@ -1,7 +1,7 @@
 @using BasicAuthentication.ViewModels
 @model LoginViewModel
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Login", "Account"))
 {
     <span style="color: black;">@Html.LabelFor(m => m.Email)</span>
     @Html.TextBoxFor(m => m.Email)

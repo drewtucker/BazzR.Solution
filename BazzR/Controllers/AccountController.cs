@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using BasicAuthentication.ViewModels;
 using BasicAuthentication.Models;
 using System;
+using Bazzr.Models;
 
 
 namespace BasicAuthentication.Controllers
@@ -37,6 +38,7 @@ namespace BasicAuthentication.Controllers
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
+				User newUser = new User(user.UserName, user.Email,Request.Form["first-name"],Request.Form["last-name"],DateTime.Now,0, user.Id);
                 return RedirectToAction("Index");
             }
             else
