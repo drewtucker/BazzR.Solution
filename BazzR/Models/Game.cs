@@ -378,35 +378,21 @@ namespace Bazzr.Models
         {
             int topScore = 0;
             List<Game> allGames = Game.GetAll();
-            List<int> GameScore = new List<int>{};
+            List<int> gameScore = new List<int>{};
             List<Game> similarGames = new List<Game>{};
             foreach (var Game in allGames)
             {
                 int thisScore = Game.Score(query);
-                GameScore.Add(thisScore);
+                gameScore.Add(thisScore);
                 topScore = Math.Max(topScore, thisScore);
             }
-            if (topScore > 1)
+            for (int i = topScore; i >= 1; i -= 1)
             {
-                if (topScore % 2 == 1)
+                for (int j = 0; j < gameScore.Count; j ++)
                 {
-                    foreach (var score in GameScore)
+                    if (gameScore[j] == i)
                     {
-                        if (score == topScore)
-                        {
-                            similarGames.Add(allGames.ElementAt(GameScore.IndexOf(score)));
-                        }
-                    }
-                    topScore -= 1;
-                }
-                for (int i = topScore; i >= 2; i -=2)
-                {
-                    foreach (var score in GameScore)
-                    {
-                        if (score == i)
-                        {
-                            similarGames.Add(allGames.ElementAt(GameScore.IndexOf(score)));
-                        }
+                        similarGames.Add(allGames.ElementAt(j));
                     }
                 }
             }
@@ -424,7 +410,7 @@ namespace Bazzr.Models
                 {
                     if (tword == qword)
                     {
-                        score += 2;
+                        score += 1;
                     }
                 }
             }

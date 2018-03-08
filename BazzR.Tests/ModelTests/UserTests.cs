@@ -74,7 +74,9 @@ namespace Bazzr.Tests
         User testUser = new User("i", "j", "k", "l", dt, 99);
         testUser.Save();
         //Act
+
         User foundUser = User.Find(testUser.GetEmail());
+
         //Assert
         Assert.AreEqual(testUser, foundUser);
     }
@@ -88,7 +90,9 @@ namespace Bazzr.Tests
       testUser.Save();
 
       string updateUserName = "Bond77";
+
       string updateEmail = "Bondo@gmail.com";
+
       string updateFirstName = "James";
       string updateLastName = "Bond";
       DateTime updateDateRegistered = new DateTime(1999, 11, 25, 09, 10, 10);
