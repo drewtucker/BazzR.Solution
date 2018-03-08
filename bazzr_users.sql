@@ -14,8 +14,8 @@ SET time_zone = "+00:00";
 -- Database: `bazzr_users`
 --
 
--- --------------------------------------------------------
-
+CREATE DATABASE IF NOT EXISTS `bazzr_users` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `bazzr_users`;
 --
 -- Table structure for table `AspNetRoleClaims`
 --
