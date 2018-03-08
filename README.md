@@ -16,10 +16,12 @@ This project was completed as a team week exercise to cap off the C# course at [
 2. Install ASP.NET, if not already present on your local machine.
 3. In your preferred shell, navigate to the BazzR folder and run the following commands:
 
- ```$ dotnet restore
- ``` ( not required for .NET Core 2.0 SDK or newer releases)
+ ```
+ $ dotnet restore
+ ```
 
- ```$ dotnet run
+ ```
+ $ dotnet run
  ```
 
 4. Navigate to localhost:5000 in your preferred browser.
