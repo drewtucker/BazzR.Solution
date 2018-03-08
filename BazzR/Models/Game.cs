@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using Bazzr;
 using MySql.Data.MySqlClient;
@@ -372,6 +373,66 @@ namespace Bazzr.Models
             {
                 conn.Dispose();
             }
+        }
+        public static List<Game> Search (string query)
+        {
+            int topScore = 0;
+            List<Game> allGames = Game.GetAll();
+            List<int> GameScore = new List<int>{};
+            List<Game> similarGames = new List<Game>{};
+            foreach (var Game in allGames)
+            {
+                int thisScore = Game.Score(query);
+                GameScore.Add(thisScore);
+                topScore = Math.Max(topScore, thisScore);
+            }
+            if (topScore > 1)
+            {
+                if (topScore % 2 == 1)
+                {
+                    foreach (var score in GameScore)
+                    {
+                        if (score == topScore)
+                        {
+                            similarGames.Add(allGames.ElementAt(GameScore.IndexOf(score)));
+                        }
+                    }
+                    topScore -= 1;
+                }
+                for (int i = topScore; i >= 2; i -=2)
+                {
+                    foreach (var score in GameScore)
+                    {
+                        if (score == i)
+                        {
+                            similarGames.Add(allGames.ElementAt(GameScore.IndexOf(score)));
+                        }
+                    }
+                }
+            }
+            return similarGames;
+        }
+
+        public int Score (string query)
+        {
+            int score = 0;
+            string[] qwords = query.Split(' ');
+            string[] twords = this.GetTitle().Split(' ');
+            foreach (var qword in qwords)
+            {
+                foreach (var tword in twords)
+                {
+                    if (tword == qword)
+                    {
+                        score += 2;
+                    }
+                }
+            }
+            if (query == this.GetTitle())
+            {
+                score += 1;
+            }
+            return score;
         }
     }
 }
