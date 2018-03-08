@@ -44,8 +44,8 @@ namespace Bazzr.Tests
             Tag testTag1 = new Tag("Action");
             Tag testTag2 = new Tag("Adventure");
 
-            newTag1.Save();
-            newTag2.Save();
+            testTag1.Save();
+            testTag2.Save();
 
             List<Tag> newList = new List<Tag> {testTag1, testTag2};
             List<Tag> result = Tag.GetAll();
@@ -56,7 +56,7 @@ namespace Bazzr.Tests
         public void Save_SavesTagToDatabase_TagList()
         {
             Tag testTag = new Tag("Action");
-            testUser.Save();
+            testTag.Save();
 
             List<Tag> testList = new List<Tag>{testTag};
             List<Tag> resultList = Tag.GetAll();

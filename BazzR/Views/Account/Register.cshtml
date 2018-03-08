@@ -1,36 +1,49 @@
 ﻿@{
-    ViewData["Title"] = "Register";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  Layout = "_Layout";
 }
-
 @using BasicAuthentication.ViewModels
 
 @model RegisterViewModel
 
-<div class="col-sm-3">
 
-</div>
-<div class="col-sm-6">
-<div class="columnStyling">
-
-<h2 class="headerHighlight">Register an Account</h2>
+<div class="container">
+<div id="new-user-form" class="col">
+  <h4 class="headerHighlight">Create an Account:</h4>
+  <hr>
+  <h2>Register a new user</h2>
 <hr />
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
-    @Html.LabelFor(user => user.Email)
+  <div class="grid-container">
+    <div class="grid-item">
+    <p>Nickname</p>
+    <input type="text" name="nickname">
+    </div>
+    <div class="grid-item">
+    <p>Email</p>
     @Html.TextBoxFor(user=> user.Email)
-
-    @Html.LabelFor(user=> user.Password)
+    </div>
+    <div class="grid-item">
+    <p>Password</p>
     @Html.PasswordFor(user=> user.Password)
-
-    @Html.LabelFor(user=> user.ConfirmPassword)
+    </div>
+    <div class="grid-item">
+    <p>Confirm Password</p>
     @Html.PasswordFor(user=> user.ConfirmPassword)
-
-    <input type="submit" class="btn btn-info" value="Register" />
+    </div>
+    <div class="grid-item">
+    <p>First Name</p>
+    <input type="text" name="first-name">
+    </div>
+    <div class="grid-item">
+    <p>Last Name</p>
+    <input type="text" name="last-name">
+    </div>
+    </div>
+    <hr>
+<p>🔥Nickname is not used for logging in. 🔥</p>
+    <input type="submit" value="Register" />
 }
-</div>
-</div>
 
-<div class="col-sm-3">
-
+</div>
 </div>
