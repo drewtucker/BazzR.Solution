@@ -11,7 +11,20 @@ namespace BazzR.Controllers
 		[HttpGet("/search/all")]
 		public IActionResult Index()
 		{
-			return View("WantToBuy");
+			List<Sell_Transaction> allSellTransactions = Sell_Transaction.GetAll();
+			return View("WantToBuy", allSellTransactions);
 		}
-    }
+
+		[HttpGet("/search/details/{id}")]
+		public ActionResult GameDetails(int id)
+		{
+			Dictionary<string, object> model = new Dictionary<string, object>();
+			Sell_Transaction thisST = Sell_Transaction.Find(id);
+			Game thisGame = Game.Find(thisST.GetGameId);
+			model.Add("thisST", thisST);
+			model.Add("thisGame", thisGame);
+			return View(model);
+		}
+
+  }
 }
