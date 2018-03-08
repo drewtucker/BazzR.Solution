@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Bazzr.Models;
 
-namespace BazzR.Controllers
+namespace Bazzr.Controllers
 {
 	public class BuysController : Controller
 	{
@@ -20,7 +21,7 @@ namespace BazzR.Controllers
 		{
 			Dictionary<string, object> model = new Dictionary<string, object>();
 			Sell_Transaction thisST = Sell_Transaction.Find(id);
-			Game thisGame = Game.Find(thisST.GetGameId);
+			Game thisGame = Game.Find(thisST.GetGameId());
 			model.Add("thisST", thisST);
 			model.Add("thisGame", thisGame);
 			return View(model);

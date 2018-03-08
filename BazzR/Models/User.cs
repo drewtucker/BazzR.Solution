@@ -9,7 +9,7 @@ namespace Bazzr.Models
 {
     public class User
     {
-        private int _id;
+        private string _id;
         private string _userName;
         private string _email;
         private string _firstName;
@@ -18,7 +18,7 @@ namespace Bazzr.Models
         private int _reputation;
         //need to incorporate password
 
-        public User(string username, string email, string firstName, string lastName, DateTime datereg, int rep = 0, int id = 0)
+        public User(string username, string email, string firstName, string lastName, DateTime datereg, int rep = 0, string id = "0")
         {
           _id = id;
           _userName = username;
@@ -38,7 +38,7 @@ namespace Bazzr.Models
           else
           {
             User newUser = (User) otherUser;
-            return this.GetId().Equals(newUser.GetId());
+            return this.GetEmail().Equals(newUser.GetEmail());
           }
             if (!(otherUser is User))
             {
@@ -47,7 +47,7 @@ namespace Bazzr.Models
             else
             {
                 User newUser = (User)otherUser;
-                return this.GetId().Equals(newUser.GetId());
+                return this.GetEmail().Equals(newUser.GetEmail());
             }
        }
 
@@ -56,7 +56,7 @@ namespace Bazzr.Models
             return this.GetId().GetHashCode();
         }
 
-        public int GetId()
+        public string GetId()
         {
           return _id;
         }
@@ -101,7 +101,7 @@ namespace Bazzr.Models
             MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
             while(rdr.Read())
             {
-                int userId = rdr.GetInt32(0);
+                string userId = rdr.GetString(0);
                 string userName = rdr.GetString(1);
                 string email = rdr.GetString(2);
                 string firstName = rdr.GetString(3);
@@ -172,7 +172,6 @@ namespace Bazzr.Models
             cmd.Parameters.Add(rep);
 
             cmd.ExecuteNonQuery();
-            _id = (int) cmd.LastInsertedId;
 
             conn.Close();
             if (conn != null)
@@ -187,11 +186,11 @@ namespace Bazzr.Models
           conn.Open();
 
           var cmd = conn.CreateCommand() as MySqlCommand;
-          cmd.CommandText = @"UPDATE users SET username = @newUserName, email = @newEmail, firstname = @newFirstName, lastname = @newLastName, date_registered = @newDate, rep = @newRep WHERE id=@id;";
+          cmd.CommandText = @"UPDATE users SET username = @newUserName, email = @newEmail, firstname = @newFirstName, lastname = @newLastName, date_registered = @newDate, rep = @newRep WHERE email=@email;";
 
-          MySqlParameter id = new MySqlParameter();
-          id.ParameterName = "@id";
-          id.Value = _id;
+          MySqlParameter thisEmail = new MySqlParameter();
+          thisEmail.ParameterName = "@email";
+          thisEmail.Value = _email;
 
           MySqlParameter updateUserName = new MySqlParameter();
           updateUserName.ParameterName = "@newUserName";
@@ -225,7 +224,7 @@ namespace Bazzr.Models
           cmd.Parameters.Add(updateDateRegistered);
           cmd.Parameters.Add(updateReputation);
 
-          cmd.Parameters.Add(id);
+          cmd.Parameters.Add(thisEmail);
 
           cmd.ExecuteNonQuery();
           _userName = newUserName;
@@ -243,20 +242,20 @@ namespace Bazzr.Models
 
         }
 
-        public static User Find(int id)
+        public static User Find(string thisEmail)
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM users WHERE id = (@searchId);";
-            MySqlParameter searchId = new MySqlParameter();
-            searchId.ParameterName = "@searchId";
-            searchId.Value = id;
-            cmd.Parameters.Add(searchId);
+            cmd.CommandText = @"SELECT * FROM users WHERE email = (@searchEmail);";
+            MySqlParameter searchEmail = new MySqlParameter();
+            searchEmail.ParameterName = "@searchEmail";
+            searchEmail.Value = thisEmail;
+            cmd.Parameters.Add(searchEmail);
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
 
-            int newid = 0;
+            string newid = "0";
             string username = "";
             string email = "";
             string firstname = "";
@@ -266,7 +265,7 @@ namespace Bazzr.Models
 
             while (rdr.Read())
             {
-                newid = rdr.GetInt32(0);
+                newid = rdr.GetString(0);
                 username = rdr.GetString(1);
                 email = rdr.GetString(2);
                 firstname = rdr.GetString(3);
@@ -290,11 +289,11 @@ namespace Bazzr.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"DELETE FROM users WHERE id = @UserId;";
+            cmd.CommandText = @"DELETE FROM users WHERE email = @UserEmail;";
 
             MySqlParameter useridParameter = new MySqlParameter();
-            useridParameter.ParameterName = "@UserId";
-            useridParameter.Value = this.GetId();
+            useridParameter.ParameterName = "@UserEmail";
+            useridParameter.Value = this.GetEmail();
             cmd.Parameters.Add(useridParameter);
 
             cmd.ExecuteNonQuery();
