@@ -74,11 +74,9 @@ namespace Bazzr.Tests
         User testUser = new User("i", "j", "k", "l", dt, 99);
         testUser.Save();
         //Act
-<<<<<<< HEAD
-        User foundUser = User.Find(testUser.GetId());
-=======
+
         User foundUser = User.Find(testUser.GetEmail());
->>>>>>> e7f152bebc85add258145e5fc770cb990591b290
+
         //Assert
         Assert.AreEqual(testUser, foundUser);
     }
@@ -92,11 +90,9 @@ namespace Bazzr.Tests
       testUser.Save();
 
       string updateUserName = "Bond77";
-<<<<<<< HEAD
-      string updateEmail = "Bond@gmail.com";
-=======
+
       string updateEmail = "Bondo@gmail.com";
->>>>>>> e7f152bebc85add258145e5fc770cb990591b290
+
       string updateFirstName = "James";
       string updateLastName = "Bond";
       DateTime updateDateRegistered = new DateTime(1999, 11, 25, 09, 10, 10);
@@ -104,16 +100,6 @@ namespace Bazzr.Tests
 
       testUser.Edit(updateUserName, updateEmail, updateFirstName, updateLastName, updateDateRegistered, updateReputation);
 
-<<<<<<< HEAD
-      string resultUserName = User.Find(testUser.GetId()).GetUserName();
-      string resultEmail = User.Find(testUser.GetId()).GetEmail();
-      string resultFirstName = User.Find(testUser.GetId()).GetFirstName();
-      string resultLastName = User.Find(testUser.GetId()).GetLastName();
-      DateTime resultDateRegistered = User.Find(testUser.GetId()).GetDate();
-      int resultReputation = User.Find(testUser.GetId()).GetReputation();
-
-      User resultUser = new User(resultUserName, resultEmail, resultFirstName, resultLastName, resultDateRegistered, resultReputation);
-=======
       string resultUserName = User.Find(testUser.GetEmail()).GetUserName();
       string resultEmail = testUser.GetEmail();
       string resultFirstName = User.Find(testUser.GetEmail()).GetFirstName();
@@ -122,7 +108,6 @@ namespace Bazzr.Tests
       int resultReputation = User.Find(testUser.GetEmail()).GetReputation();
 
       User resultUser = new User(resultUserName, "Bond@gmail.com", resultFirstName, resultLastName, resultDateRegistered, resultReputation);
->>>>>>> e7f152bebc85add258145e5fc770cb990591b290
       resultUser.Save();
 
       //assert

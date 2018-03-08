@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -306,4 +304,3 @@ namespace Bazzr.Models
         }
     }
 }
->>>>>>> e7f152bebc85add258145e5fc770cb990591b290
