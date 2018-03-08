@@ -1,12 +1,17 @@
 @{
   Layout = "_Layout";
 }
+<div class="col-sm-3">
 
-<h1>Add a new game:</h1>
-<div class="jumbotron">
+</div>
+<div class="col-sm-6">
+
+<div class="columnStyling">
+  <h3 class="headerHighlight">Add a new game:</h3>
   @* <form action="../user/profile" method="post"> *@
   <form action="/game" method="post">
     Title: <input type="text" name="game-title">
+    <br>
     Platform: <select type="text" name="game-platform">
         <option>Nintendo Switch</option>
         <option>Nintendo Wii U</option>
@@ -32,9 +37,18 @@
         <option>Xbox 360</option>
         <option>Xbox One</option>
     </select>
-    Description: <input type="text" name="game-description">
-    photopath url: <input type="text" name="game-photopath">
+    <br>
+    Description: <input type="text" name="game-description" size="50">
+    <br>
+    Photo url: <input type="text" name="game-photopath">
+    <br>
     Metascore: <input type="number" name="game-metascore">
+    <hr>
     <button class="btn btn-success" type="submit" name="button">Submit</button>
   </form>
+</div>
+</div>
+
+<div class="col-sm-3">
+
 </div>
