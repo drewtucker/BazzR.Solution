@@ -24,6 +24,20 @@ CREATE TABLE `games` (
   `metascore` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
+INSERT INTO `games` (`id`, `title`, `platform`, `description`, `photopath`, `metascore`) VALUES
+(4, 'Grand Theft Auto III', 'Playstation 2', '', 'https://upload.wikimedia.org/wikipedia/en/b/be/GTA3boxcover.jpg', 97),
+(5, 'Dark Souls', 'Playstation 3', '2011', 'https://upload.wikimedia.org/wikipedia/en/8/8d/Dark_Souls_Cover_Art.jpg', 89),
+(6, 'Katamari Damacy', 'Playstation 2', '2004', 'https://upload.wikimedia.org/wikipedia/en/a/aa/KatamariDamacybox.jpg', 86),
+(7, 'Dark Souls II', 'PC', '2014', 'https://upload.wikimedia.org/wikipedia/en/e/ed/Dark_Souls_II_cover.jpg', 94),
+(8, 'Portal 2', 'PC', '2011', 'https://upload.wikimedia.org/wikipedia/en/f/f9/Portal2cover.jpg', 95),
+(9, 'StarCraft', 'PC', '1998', 'https://upload.wikimedia.org/wikipedia/en/9/93/StarCraft_box_art.jpg', 88),
+(10, 'Batman: Arkham City', 'Xbox 360', '2011', 'https://upload.wikimedia.org/wikipedia/en/0/00/Batman_Arkham_City_Game_Cover.jpg', 94),
+(11, 'Goldeneye 007', 'Nintendo 64', '1997', 'https://upload.wikimedia.org/wikipedia/en/3/36/GoldenEye007box.jpg', 96),
+(12, 'Grand Theft Auto IV', 'Playstation 3', '2008', 'https://upload.wikimedia.org/wikipedia/en/b/b7/Grand_Theft_Auto_IV_cover.jpg', 98),
+(13, 'Perfect Dark', 'Nintendo 64', '2000', 'https://upload.wikimedia.org/wikipedia/en/3/32/Perfect_dark_box.jpg', 97),
+(14, 'Parasite Eve', 'Playstation', '1998', 'https://upload.wikimedia.org/wikipedia/en/3/3f/Parasite_Eve_Coverart.png', 81),
+(15, 'Tekken 3', 'Playstation', '1998', 'https://upload.wikimedia.org/wikipedia/en/f/f0/T3usposter.jpg', 96);
+
 CREATE TABLE `games_tags` (
   `id` int(11) NOT NULL,
   `game_id` int(11) NOT NULL,
