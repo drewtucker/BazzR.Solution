@@ -150,7 +150,7 @@ namespace Bazzr.Tests
             testGame.Save();
             string query = "Tetris";
             int score = testGame.Score(query);
-            Assert.AreEqual(3, score);
+            Assert.AreEqual(2, score);
         }
 
         [TestMethod]
@@ -170,7 +170,7 @@ namespace Bazzr.Tests
             testGame.Save();
             string query = "Dark Horizon";
             int score = testGame.Score(query);
-            Assert.AreEqual(2, score);
+            Assert.AreEqual(1, score);
         }
 
         [TestMethod]
@@ -200,7 +200,7 @@ namespace Bazzr.Tests
         }
 
         [TestMethod]
-        public void Search_FourMatchesInFiveReordered_GameList()
+        public void Search_FourMatchesInFive_GameList()
         {
             Game testGame = new Game("Dark Souls 3", "SNES", "", "", 0);
             testGame.Save();
@@ -210,10 +210,30 @@ namespace Bazzr.Tests
             testGame3.Save();
             Game testGame4 = new Game("Perfect Dark", "Xbox", "", "", 0);
             testGame4.Save();
+            Game testGame5 = new Game("Dark Souls", "Xbox", "", "", 0);
+            testGame5.Save();
+            string query = "Dark";
+            List<Game> resultList = Game.Search(query);
+            List<Game> testList = new List<Game>{testGame, testGame2, testGame4, testGame5};
+            CollectionAssert.AreEqual(testList, resultList);
+        }
+
+        [TestMethod]
+        public void Search_FourMatchesInFiveReordered_GameList()
+        {
+            Game testGame = new Game("Perfect Dark", "Xbox", "", "", 0);
+            testGame.Save();
+            Game testGame2 = new Game("Dark Souls 3", "SNES", "", "", 0);
+            testGame2.Save();
+            Game testGame3 = new Game("Dark Souls", "SNES", "", "", 0);
+            testGame3.Save();
+            Game testGame4 = new Game("Super Mario World", "SNES", "", "", 0);
+            testGame4.Save();
+            Game testGame5 = new Game("Dark Souls", "Xbox", "", "", 0);
+            testGame5.Save();
             string query = "Dark Souls";
             List<Game> resultList = Game.Search(query);
-            Console.WriteLine(resultList[0].GetTitle());
-            List<Game> testList = new List<Game>{testGame2, testGame, testGame4};
+            List<Game> testList = new List<Game>{testGame3, testGame5, testGame2, testGame};
             CollectionAssert.AreEqual(testList, resultList);
         }
     }
