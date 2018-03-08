@@ -4,22 +4,28 @@ BazzR is an online marketplace for trading video games.
 This project was completed as a team week exercise to cap off the C# course at [Epicodus](https://www.epicodus.com) in Seattle, WA.
 
 ## Installation
-<!-- This game can be played online, with no additional setup required, at [GitHub.io](https://eswotinsky.github.io/tetris/).
-
-To instead setup a local copy on your machine:
-
+### Database Setup
 1. Clone this repository.
+2. Within phpMyAdmin (or another MySql administration tool of your choice), create a new database called *bazzr*.
+3. Import the *bazzr.sql* file into the *bazzr* database.
+4. Optional - to allow for testing, also create a *bazzr_test* database and import the *bazzr_test.sql* file into it.
 
-2. Within the master folder, navigate to the index.html file and open it in your preferred (modern) browser.
 
-3. To explore or edit the project code, open the relevant file/s in your preferred text editor. Any saved changes will be reflected when you refresh or reopen the index.html file within your browser. -->
+### Website Setup
+1. Follow the steps above to set up your database/s.
+2. Install ASP.NET, if not already present on your local machine.
+3. In your preferred shell, navigate to the BazzR folder and run the following commands:
+
+ ```$ dotnet restore
+ ``` ( not required for .NET Core 2.0 SDK or newer releases)
+
+ ```$ dotnet run
+ ```
+
+4. Navigate to localhost:5000 in your preferred browser.
 
 ## Navigation
-<!-- Tetris is a tile-matching puzzle game in which a series of falling blocks must be manipulated so that they neatly fit together in horizontal rows across the game field.
-
-Once the game begins, pieces will begin spawning one at a time from the top of the screen, and slowly falling towards the bottom. You can use the "left" and "right" arrow keys to move the active piece around, and the "down" arrow to cause the piece to drop faster.
-
-Fill in an entire row, and you'll clear it from the screen! How long can you last before the falling pieces overwhelm you and fill your board? -->
+placeholder
 
 ## Built With
 * [Visual Studio Code](https://code.visualstudio.com/) - Code editor developed by Microsoft and based on the Electron framework.
