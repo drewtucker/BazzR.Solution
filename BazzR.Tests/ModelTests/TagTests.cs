@@ -10,7 +10,7 @@ namespace Bazzr.Tests
     {
         public TagTests()
         {
-            DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=bazzr;";
+            DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=bazzr_test;";
         }
 
         public void Dispose()
