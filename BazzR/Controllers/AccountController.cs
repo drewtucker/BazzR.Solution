@@ -38,7 +38,9 @@ namespace BasicAuthentication.Controllers
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-				User newUser = new User(user.UserName, user.Email,Request.Form["first-name"],Request.Form["last-name"],DateTime.Now,0, user.Id);
+				Console.WriteLine(user.UserName);
+				User newUser = new User(Request.Form["nickname"], user.UserName,Request.Form["first-name"],Request.Form["last-name"],DateTime.Now,0, user.Id);
+				newUser.Save();
                 return RedirectToAction("Index");
             }
             else
@@ -46,6 +48,7 @@ namespace BasicAuthentication.Controllers
                 return View();
             }
 		}
+		
 		[HttpPost("account/login")]
 		public async Task<IActionResult> Login(LoginViewModel model)
 		{

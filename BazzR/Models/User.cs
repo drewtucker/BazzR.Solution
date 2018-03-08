@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MySql.Data.MySqlClient;
+using Microsoft.AspNetCore.Identity;
+using BasicAuthentication.ViewModels;
+using BasicAuthentication.Models;
 using Bazzr;
-
 namespace Bazzr.Models
 {
+    
     public class User
     {
+         public static User ThisUser(string thisEmail)
+        {
+            return User.Find(thisEmail);
+        }
         private string _id;
         private string _userName;
         private string _email;
@@ -143,8 +150,8 @@ namespace Bazzr.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO users (username, email, firstname, lastname, date_registered, rep)
-                VALUES (@UserName, @Email, @FirstName, @LastName, @Date, @Rep);";
+            cmd.CommandText = @"INSERT INTO users (username, email, firstname, lastname, date_registered, rep, id)
+                VALUES (@UserName, @Email, @FirstName, @LastName, @Date, @Rep, @Id);";
 
             MySqlParameter username = new MySqlParameter();
             username.ParameterName = "@UserName";
@@ -175,7 +182,7 @@ namespace Bazzr.Models
             rep.ParameterName = "@Rep";
             rep.Value = _reputation;
             cmd.Parameters.Add(rep);
-            
+
             MySqlParameter id = new MySqlParameter();
             id.ParameterName = "@Id";
             id.Value = _id;
