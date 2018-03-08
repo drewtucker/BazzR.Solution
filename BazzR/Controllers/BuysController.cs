@@ -41,9 +41,11 @@ namespace Bazzr.Controllers
 			Sell_Transaction thisST = Sell_Transaction.Find(id);
 			List<Game> allGames = Game.GetAll();
 			Game thisGame = Game.Find(thisST.GetGameId());
+			Game gameDetails = Game.Find(id);
 			dict.Add("thisST", thisST);
 			dict.Add("allGames", allGames);
 			dict.Add("thisGame", thisGame);
+			dict.Add("gameDetails", gameDetails);
 			ViewBag.Dictionary = dict;
 			return View();
 		}
