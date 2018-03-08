@@ -34,13 +34,22 @@
 
 <div id="games-for-trade-column" class="col-sm-8">
   <h4 class="headerHighlight">Games up For Trade:</h4>
-  @if (Model != null)
+  @if (@ViewBag.Dictionary != null)
   {
-    foreach(Sell_Transaction sellTransaction in Model)
+    foreach(var game in @ViewBag.Dictionary["allGames"])
     {
-      <img src="@Game.Find(@sellTransaction.GetGameId()).GetPhotoPath()">
-      <a href="/search/details/@Game.Find(@sellTransaction.GetId())">@Game.Find(@sellTransaction.GetGameId()).GetTitle()</a>
-      <p>@Game.Find(@sellTransaction.GetGameId()).GetPlatform()</p>
+    <img src="@game.GetPhotoPath()" >
+    <br>
+    <h5><a href="#">@game.GetTitle()</a></h5>  
+    <p>@game.GetPlatform()</p>
+    <hr>
+    }
+
+    foreach(var sellTransaction in @ViewBag.Dictionary["allSellTransactions"])
+    {
+      <img src="@sellTransaction.Find(@sellTransaction.GetId()).GetGamePhoto()">
+      <a href="/search/details/@ViewBag.Dictionary["allGames"].Find(@sellTransaction.GetId())">@ViewBag.Dictionary["allGames"].Find(@sellTransaction.GetGameId()).GetTitle()</a>
+      <p>@ViewBag.Dictionary["allGames"].Find(sellTransaction.GetGameId()).GetPlatform()</p>
       <hr>
     }
   }

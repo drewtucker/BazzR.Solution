@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Bazzr.Models;
 
 namespace BazzR.Controllers
 {
@@ -11,19 +12,28 @@ namespace BazzR.Controllers
 		[HttpGet("/search/all")]
 		public IActionResult Index()
 		{
+			Dictionary<string, object> dict = new Dictionary<string, object>();
 			List<Sell_Transaction> allSellTransactions = Sell_Transaction.GetAll();
-			return View("WantToBuy", allSellTransactions);
+			List<Game> allGames = Game.GetAll();
+			dict.Add("allGames", allGames);
+			dict.Add("allSellTransactions", allSellTransactions);
+			ViewBag.Dictionary = dict;
+			return View("WantToBuy");
 		}
 
 		[HttpGet("/search/details/{id}")]
 		public ActionResult GameDetails(int id)
 		{
-			Dictionary<string, object> model = new Dictionary<string, object>();
+
+			Dictionary<string, object> dict = new Dictionary<string, object>();
 			Sell_Transaction thisST = Sell_Transaction.Find(id);
-			Game thisGame = Game.Find(thisST.GetGameId);
-			model.Add("thisST", thisST);
-			model.Add("thisGame", thisGame);
-			return View(model);
+			List<Game> allGames = Game.GetAll();
+			Game thisGame = Game.Find(thisST.GetGameId());
+			dict.Add("thisST", thisST);
+			dict.Add("allGames", allGames);
+			dict.Add("thisGame", thisGame);
+			ViewBag.Dictionary = dict;
+			return View();
 		}
 
   }
