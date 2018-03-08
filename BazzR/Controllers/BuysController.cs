@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Bazzr.Models;
 
-namespace BazzR.Controllers
+namespace Bazzr.Controllers
 {
 	public class BuysController : Controller
 	{
