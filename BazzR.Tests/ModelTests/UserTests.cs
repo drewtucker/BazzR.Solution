@@ -74,7 +74,7 @@ namespace Bazzr.Tests
         User testUser = new User("i", "j", "k", "l", dt, 99);
         testUser.Save();
         //Act
-        User foundUser = User.Find(testUser.GetId());
+        User foundUser = User.Find(testUser.GetEmail());
         //Assert
         Assert.AreEqual(testUser, foundUser);
     }
@@ -88,7 +88,7 @@ namespace Bazzr.Tests
       testUser.Save();
 
       string updateUserName = "Bond77";
-      string updateEmail = "Bond@gmail.com";
+      string updateEmail = "Bondo@gmail.com";
       string updateFirstName = "James";
       string updateLastName = "Bond";
       DateTime updateDateRegistered = new DateTime(1999, 11, 25, 09, 10, 10);
@@ -96,14 +96,14 @@ namespace Bazzr.Tests
 
       testUser.Edit(updateUserName, updateEmail, updateFirstName, updateLastName, updateDateRegistered, updateReputation);
 
-      string resultUserName = User.Find(testUser.GetId()).GetUserName();
-      string resultEmail = User.Find(testUser.GetId()).GetEmail();
-      string resultFirstName = User.Find(testUser.GetId()).GetFirstName();
-      string resultLastName = User.Find(testUser.GetId()).GetLastName();
-      DateTime resultDateRegistered = User.Find(testUser.GetId()).GetDate();
-      int resultReputation = User.Find(testUser.GetId()).GetReputation();
+      string resultUserName = User.Find(testUser.GetEmail()).GetUserName();
+      string resultEmail = testUser.GetEmail();
+      string resultFirstName = User.Find(testUser.GetEmail()).GetFirstName();
+      string resultLastName = User.Find(testUser.GetEmail()).GetLastName();
+      DateTime resultDateRegistered = User.Find(testUser.GetEmail()).GetDate();
+      int resultReputation = User.Find(testUser.GetEmail()).GetReputation();
 
-      User resultUser = new User(resultUserName, resultEmail, resultFirstName, resultLastName, resultDateRegistered, resultReputation);
+      User resultUser = new User(resultUserName, "Bond@gmail.com", resultFirstName, resultLastName, resultDateRegistered, resultReputation);
       resultUser.Save();
 
       //assert
