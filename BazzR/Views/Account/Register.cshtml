@@ -7,7 +7,13 @@
 
 @model RegisterViewModel
 
-<h2>Register a new user</h2>
+<div class="col-sm-3">
+
+</div>
+<div class="col-sm-6">
+<div class="columnStyling">
+
+<h2 class="headerHighlight">Register an Account</h2>
 <hr />
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
@@ -20,5 +26,11 @@
     @Html.LabelFor(user=> user.ConfirmPassword)
     @Html.PasswordFor(user=> user.ConfirmPassword)
 
-    <input type="submit" value="Register" />
+    <input type="submit" class="btn btn-info" value="Register" />
 }
+</div>
+</div>
+
+<div class="col-sm-3">
+
+</div>
