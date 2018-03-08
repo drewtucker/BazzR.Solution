@@ -10,7 +10,7 @@ CREATE TABLE `buy_offer` (
   `offerer_id` int(11) NOT NULL,
   `game_id` int(11) NOT NULL,
   `sell_transaction_id` int(11) NOT NULL,
-  `date` datetime NOT NULL
+  `date` datetime NOT NULL,
   `offered_game_id` int(11) NOT NULL,
   `comment` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -23,6 +23,20 @@ CREATE TABLE `games` (
   `photopath` varchar(255) NOT NULL,
   `metascore` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+INSERT INTO `games` (`id`, `title`, `platform`, `description`, `photopath`, `metascore`) VALUES
+(4, 'Grand Theft Auto III', 'Playstation 2', '', 'http://static.metacritic.com/images/products/games/3/227b480f073b1c0ffba8b7a6dc79a453-98.jpg', 97),
+(5, 'Dark Souls', 'Playstation 3', '2011', 'https://upload.wikimedia.org/wikipedia/en/8/8d/Dark_Souls_Cover_Art.jpg', 89),
+(6, 'Katamari Damacy', 'Playstation 2', '2004', 'https://en.wikipedia.org/wiki/Katamari_Damacy#/media/File:KatamariDamacybox.jpg', 86),
+(7, 'Dark Souls II', 'PC', '2014', 'https://en.wikipedia.org/wiki/Dark_Souls_II#/media/File:Dark_Souls_II_cover.jpg', 94),
+(8, 'Portal 2', 'PC', '2011', 'https://en.wikipedia.org/wiki/Portal_2#/media/File:Portal2cover.jpg', 95),
+(9, 'StarCraft', 'PC', '1998', 'https://en.wikipedia.org/wiki/StarCraft_(video_game)#/media/File:StarCraft_box_art.jpg', 88),
+(10, 'Batman: Arkham City', 'Xbox 360', '2011', 'https://upload.wikimedia.org/wikipedia/en/0/00/Batman_Arkham_City_Game_Cover.jpg', 94),
+(11, 'Goldeneye 007', 'Nintendo 64', '1997', 'https://en.wikipedia.org/wiki/GoldenEye_007_(1997_video_game)#/media/File:GoldenEye007box.jpg', 96),
+(12, 'Grand Theft Auto IV', 'Playstation 3', '2008', 'https://upload.wikimedia.org/wikipedia/en/b/b7/Grand_Theft_Auto_IV_cover.jpg', 98),
+(13, 'Perfect Dark', 'Nintendo 64', '2000', 'https://en.wikipedia.org/wiki/Perfect_Dark#/media/File:Perfect_dark_box.jpg', 97),
+(14, 'Parasite Eve', 'Playstation', '1998', 'https://en.wikipedia.org/wiki/Parasite_Eve_(video_game)#/media/File:Parasite_Eve_Coverart.png', 81),
+(15, 'Tekken 3', 'Playstation', '1998', 'https://en.wikipedia.org/wiki/Tekken_3#/media/File:T3usposter.jpg', 96);
 
 CREATE TABLE `games_tags` (
   `id` int(11) NOT NULL,

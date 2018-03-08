@@ -303,6 +303,5 @@ namespace Bazzr.Models
                 conn.Close();
             }
         }
-
     }
 }

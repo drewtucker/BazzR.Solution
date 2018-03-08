@@ -36,7 +36,18 @@
   <h4 class="headerHighlight">Games up For Trade:</h4>
   @if (Model != null)
   {
+    foreach(Sell_Transaction sellTransaction in Model)
+    {
+      <img src="@Game.Find(@sellTransaction.GetGameId()).GetPhotoPath()">
+      <a href="/search/details/@Game.Find(@sellTransaction.GetId())">@Game.Find(@sellTransaction.GetGameId()).GetTitle()</a>
+      <p>@Game.Find(@sellTransaction.GetGameId()).GetPlatform()</p>
+      <hr>
+    }
   }
-    <a href="#"><h5>Dark Souls: Prepare To Die Edition</h5></a>
+  else
+  {
+    <h4>There are currently no Games up for Trade.</h4>
+  }
+
 
 </div>
