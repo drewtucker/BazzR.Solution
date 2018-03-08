@@ -150,26 +150,36 @@ namespace Bazzr.Models
             username.ParameterName = "@UserName";
             username.Value = _userName;
             cmd.Parameters.Add(username);
+            
             MySqlParameter email = new MySqlParameter();
             email.ParameterName = "@Email";
             email.Value = _email;
             cmd.Parameters.Add(email);
+            
             MySqlParameter firstname = new MySqlParameter();
             firstname.ParameterName = "@FirstName";
             firstname.Value = _firstName;
             cmd.Parameters.Add(firstname);
+            
             MySqlParameter lastname = new MySqlParameter();
             lastname.ParameterName = "@LastName";
             lastname.Value = _lastName;
             cmd.Parameters.Add(lastname);
+            
             MySqlParameter date = new MySqlParameter();
             date.ParameterName = "@Date";
             date.Value = _dateRegistered;
             cmd.Parameters.Add(date);
+            
             MySqlParameter rep = new MySqlParameter();
             rep.ParameterName = "@Rep";
             rep.Value = _reputation;
             cmd.Parameters.Add(rep);
+            
+            MySqlParameter id = new MySqlParameter();
+            id.ParameterName = "@Id";
+            id.Value = _id;
+            cmd.Parameters.Add(id);
 
             cmd.ExecuteNonQuery();
 
