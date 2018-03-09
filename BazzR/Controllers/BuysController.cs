@@ -21,6 +21,18 @@ namespace Bazzr.Controllers
 			return View("WantToBuy");
 		}
 
+		[HttpPost("/search/results")]
+		public ActionResult Search()
+		{
+			Console.WriteLine("-----------------------");
+			string query = Request.Form["topnav-search"];
+			Console.WriteLine(query);
+			List<Game> matchedGames = Game.Search(query);
+			ViewBag.MatchedGames = matchedGames;
+
+			return View("SearchResults");
+		}
+
 		[HttpGet("/search/details/{id}")]
 		public ActionResult GameDetails(int id)
 		{
@@ -29,11 +41,25 @@ namespace Bazzr.Controllers
 			Sell_Transaction thisST = Sell_Transaction.Find(id);
 			List<Game> allGames = Game.GetAll();
 			Game thisGame = Game.Find(thisST.GetGameId());
+			Game gameDetails = Game.Find(id);
 			dict.Add("thisST", thisST);
 			dict.Add("allGames", allGames);
 			dict.Add("thisGame", thisGame);
+			dict.Add("gameDetails", gameDetails);
 			ViewBag.Dictionary = dict;
 			return View();
+		}
+
+		[HttpGet("/offer/create")]
+		public ActionResult MakeOffer()
+		{
+			// Dictionary<string, object> dict = new Dictionary<string, object>();
+			// Sell_Transaction thisST = Sell_Transaction.Find(id);
+			// Game thisGame = Game.Find(thisST.GetGameId());
+			// dict.Add("thisST", thisST);
+			// dict.Add("thisGame", thisGame);
+			// ViewBag.Dictionary = dict;
+			return View("OfferScreen(buyer)");
 		}
 
   }

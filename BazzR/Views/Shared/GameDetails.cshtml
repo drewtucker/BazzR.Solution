@@ -7,17 +7,20 @@
 </div>
 
 <div id="offer-form" class="col-sm-6">
-  <h4 class="headerHighlight">Details for @Model["thisGame"].GetTitle()</h4>
+  <div class="columnStyling">
+
+  <h4 class="headerHighlight">Details for @ViewBag.Dictionary["gameDetails"].GetTitle()</h4>
   <hr>
-  <img src="@Model["thisST"].GetGamePhoto()">
-  <h5>Platform: @Model["thisGame"].GetPlatform()</h5>
-  <h6>About: @Model["thisGame"].GetDescription()</h6>
-  <h6>Metacritic Score: @Model["thisGame"].GetMetaScore()</h6>
+  <img src="@ViewBag.Dictionary["gameDetails"].GetPhotoPath()">
+  <h5>Platform: @ViewBag.Dictionary["gameDetails"].GetPlatform()</h5>
+  <h6>About: @ViewBag.Dictionary["gameDetails"].GetDescription()</h6>
+  <h6>Metacritic Score: @ViewBag.Dictionary["gameDetails"].GetMetaScore()</h6>
   <br>
-  <h6>Trade Status: @Model["thisST"].GetStatus()</h6>
-  <h6>Put up for Trade on: @Model["thisST"].GetDate()</h6>
+  <h6>Trade Status: @ViewBag.Dictionary["thisST"].GetStatus()</h6>
+  <h6>Put up for Trade on: @ViewBag.Dictionary["thisST"].GetDate()</h6>
   <hr>
   <a href="#">Make An Offer</a>
+</div>
 </div>
 
 <div class="col-sm-3">

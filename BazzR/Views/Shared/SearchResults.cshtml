@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class="col-sm-3">
+
+</div>
+
+<div class="col-sm-6">
+  <div class="columnStyling">
+    <h2>Search Results:</h2>
+    @foreach(var match in ViewBag.MatchedGames)
+    {
+      <a href="/search/details/@match.GetId()"><p>@match.GetTitle()</p></a>
+    }
+  </div>
+</div>
+
+<div class="col-sm-3">
+
+</div>
